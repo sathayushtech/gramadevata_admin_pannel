@@ -9,6 +9,7 @@ import { EditGoshalaComponent } from './edit-goshala/edit-goshala.component';
 import { VillagesComponent } from './villages/villages.component';
 import { EditVillageComponent } from './edit-village/edit-village.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+// import { AddTempleComponent } from './add-temple/add-temple.component';
 // import { EditEventComponent } from './edit-event/edit-event.component';
 
 export const routes: Routes = [
@@ -24,7 +25,8 @@ export const routes: Routes = [
     // {path: " editgoshala/:id", component: EditGoshalaComponent},
     {path:'editgoshala/:id',component:EditGoshalaComponent},
     {path: 'edit_village/:id', component: EditVillageComponent},
-    {path: 'edit_event/:id', component: EditEventComponent}
+    {path: 'edit_event/:id', component: EditEventComponent},
+    // {path: 'add_temple', component: AddTempleComponent}
     // {path: 'signup', component: SignupComponent},
     // {path: 'verify', component: VerifyComponent}
 

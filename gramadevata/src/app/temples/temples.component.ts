@@ -94,6 +94,10 @@ if (storedCategory) {
     this.router.navigate(['temples', templeId])
   }
 
+
+  addtemple(): void {
+    this.router.navigate(['add_temple'])
+  }
   editTemple(temple: any): void {
     this.router.navigate(['edit_temple',temple]);
   }
@@ -202,7 +206,7 @@ if (storedCategory) {
 
   selectedLocationId: any;
 
-  currentPage: number = 1;
+  currentPage: number = 6;
   globaltemples: any[] = [];
 
   validatorForm!:FormGroup;
@@ -606,13 +610,62 @@ onVillageSelect(selectedValue: string) {
 
 
 
+// currentPage = 1;
+// pageSize = 10; // Items per page
+
+// get paginatedTemples() {
+//   const start = (this.currentPage - 1) * this.pageSize;
+//   return this.globaltemples.slice(start, start + this.pageSize);
+// }
+
+// changePage(page: number) {
+//   this.currentPage = page;
+// }
+
+
+pageSize: number = 20;
+currentPages: number = 1;
+  // get paginatedTemples(): any[] {
+  //   const start = (this.currentPages - 1) * this.pageSize;
+  //   return this.globaltemples.slice(start, start + this.pageSize);
+  // }
+
+  // get totalPages(): number {
+  //   return Math.ceil(this.globaltemples.length / this.pageSize);
+  // }
+
+  // changePage(page: number) {
+  //   if (page >= 1 && page <= this.totalPages) {
+  //     this.currentPages = page;
+  //   }
+
+
+  // }
 
 
 
 
+get paginatedTemples(): any[] {
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    return this.globaltemples.slice(start, end);
+  }
 
+  get totalPages(): number {
+    const count = this.globaltemples.length;
+    return count > 0 ? Math.ceil(count / this.pageSize) : 1;
+  }
 
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
 
+      // Optional: If paginated results are empty (e.g., after filtering), go back a page
+      if (this.paginatedTemples.length === 0 && this.currentPage > 1) {
+        this.currentPage--;
+      }
+    }
+  }
 
 
 
