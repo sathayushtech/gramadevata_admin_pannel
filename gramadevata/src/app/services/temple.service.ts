@@ -10,7 +10,7 @@ export class TempleService {
 
   constructor(private httpclient: HttpClient) { }
 
-   getalltemples():Observable<any>{
+   getalltemples( page: number = 1):Observable<any>{
     return this.httpclient.get(URL+"temple_inactive")
   }
 
@@ -103,6 +103,8 @@ export class TempleService {
     })
   }
 
-
+  addTemple(templeData: any): Observable<any> {
+    return this.httpclient.post(URL+"temple", templeData);
+  }
   
 }

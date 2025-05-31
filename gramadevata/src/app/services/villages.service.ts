@@ -29,4 +29,8 @@ export class VillagesService {
       const updateUrl = `${URL}village/${templeId}`;  
       return this.httpclient.put(updateUrl, templeData);
     }
+
+      addvillage(villagedata:any):Observable<any>{
+    return this.httpclient.post(URL+"village",villagedata)
+  }
 }

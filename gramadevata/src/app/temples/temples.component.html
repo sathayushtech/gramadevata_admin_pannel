@@ -204,7 +204,6 @@
 
 
 
-
       <div class="col-12 col-md-3 border-end d-flex flex-column">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h5 class="mb-0">Temples</h5>
@@ -216,7 +215,8 @@
       nzNotFoundContent="No data found"
       [nzShowSearch]="true"
       [(ngModel)]="selectedCategoryId"
-      (ngModelChange)="onSelectCategory($event)">
+      (ngModelChange)="onSelectCategory($event)"
+    >
       <nz-option 
         *ngFor="let option of CategoryOptions"
         [nzValue]="option.value"
@@ -229,7 +229,7 @@
 
   <div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
     <ul class="list-unstyled">
-      <li *ngFor="let temple of paginatedTemples" class="mb-2">
+      <li *ngFor="let temple of globaltemples" class="mb-2">
         <button class="btn w-100 d-flex align-items-center"
           [ngClass]="{
             'btn-outline-primary': selectedTemple !== temple,
@@ -237,45 +237,41 @@
           }"
           (click)="selectTemple(temple)">
           <img [src]="temple.image_location[0] ? temple.image_location[0] : 'assets/ohm.jpg'" alt="temple logo"
-            width="30" height="30"
-            class="me-2 rounded-circle"
-            (error)="handleProfileImageError($event)" />
+            width="30" height="30" class="me-2 rounded-circle" (error)="handleProfileImageError($event)" />
           {{ temple.name }}
         </button>
       </li>
     </ul>
+  </div>
 
-    <!-- Pagination Controls -->
-    <nav *ngIf="globaltemples.length > pageSize" class="mt-3">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
-        </li>
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <button class="btn btn-sm btn-outline-primary"
+            (click)="previousPage()"
+            [disabled]="currentPage === 1">
+      Previous
+    </button>
 
-        <li
-          class="page-item"
-          *ngFor="let page of [].constructor(totalPages); let i = index"
-          [class.active]="currentPage === i + 1">
-          <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
-        </li>
+    <span>Page {{ currentPage }}</span>
 
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
-        </li>
-      </ul>
-    </nav>
+    <button class="btn btn-sm btn-outline-primary"
+            (click)="nextPage()"
+            [disabled]="!hasMoreData">
+      Next
+    </button>
   </div>
 </div>
 
-
-
-
-
       <!-- Temple Details -->
       <div class="col-12 col-md-5 border-end d-flex flex-column">
-        <h5>Temple Category</h5>
-
-        
+        <h5 class="d-flex justify-content-between align-items-center">
+        <span>Temple Category</span>
+        <button (click)="addTemple()"
+                class="btn btn-sm"
+                style="border: 1px solid rgb(238, 141, 51); background-color: rgb(238, 141, 51); border-radius: 20px; color: black; font-size: 14px;">
+          + Add Temple
+        </button>
+      </h5>
         <hr>
         <div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
           <div *ngIf="selectedTemple">

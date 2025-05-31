@@ -255,58 +255,58 @@ if (storedCategory) {
 
 
 
-  loadFilteredTemples() {
-    if (this.selectedCategoryId && this.selectedLocationId) {
-      console.log(this.selectedCategoryId,this.selectedLocationId,"sdfg")
-        this.templeservice.filterinactiveemple(this.selectedCategoryId, this.selectedLocationId, this.currentPage).subscribe(
-            (response) => {
-                this.globaltemples = [...this.globaltemples, ...response.results];
-                console.log(this.globaltemples, "Filtered Temples with Category and Location");
-            },
-            (error) => {
-                console.error('Error fetching Filtered Temples with Category and Location:', error);
-            }
-        );
-    } else if (this.selectedCategoryId) {
-      console.log("sdfg123")
-        this.templeservice.filterinactiveemple(this.selectedCategoryId, '').subscribe(
-            (response) => {
-                this.globaltemples = [...this.globaltemples, ...response.results];
-                console.log(this.globaltemples, "Filtered Temples with Category");
-            },
-            (error) => {
-                console.error('Error fetching Filtered Temples with Category:', error);
-            }
-        );
-    }else if (this.selectedLocationId) {
-      this.templeservice.filterinactiveemple("",this.selectedLocationId, this.currentPage).subscribe(
-          (response) => {
-              this.globaltemples = [...this.globaltemples, ...response.results];
-              console.log(this.globaltemples, "Filtered Temples with Location");
-          },
-          (error) => {
-              console.error('Error fetching Filtered Temples with Location:', error);
-          }
-      );
-  } 
+//   loadFilteredTemples() {
+//     if (this.selectedCategoryId && this.selectedLocationId) {
+//       console.log(this.selectedCategoryId,this.selectedLocationId,"sdfg")
+//         this.templeservice.filterinactiveemple(this.selectedCategoryId, this.selectedLocationId, this.currentPage).subscribe(
+//             (response) => {
+//                 this.globaltemples = [...this.globaltemples, ...response.results];
+//                 console.log(this.globaltemples, "Filtered Temples with Category and Location");
+//             },
+//             (error) => {
+//                 console.error('Error fetching Filtered Temples with Category and Location:', error);
+//             }
+//         );
+//     } else if (this.selectedCategoryId) {
+//       console.log("sdfg123")
+//         this.templeservice.filterinactiveemple(this.selectedCategoryId, '').subscribe(
+//             (response) => {
+//                 this.globaltemples = [...this.globaltemples, ...response.results];
+//                 console.log(this.globaltemples, "Filtered Temples with Category");
+//             },
+//             (error) => {
+//                 console.error('Error fetching Filtered Temples with Category:', error);
+//             }
+//         );
+//     }else if (this.selectedLocationId) {
+//       this.templeservice.filterinactiveemple("",this.selectedLocationId, this.currentPage).subscribe(
+//           (response) => {
+//               this.globaltemples = [...this.globaltemples, ...response.results];
+//               console.log(this.globaltemples, "Filtered Temples with Location");
+//           },
+//           (error) => {
+//               console.error('Error fetching Filtered Temples with Location:', error);
+//           }
+//       );
+//   } 
     
     
     
-    else {
+//     else {
       
-        this.templeservice.getalltemples().subscribe(
-            (response) => {
-                this.globaltemples = [...this.globaltemples, ...response.results];
-                console.log(this.globaltemples, "Filtered Temples without Category or Location");
-            },
-            (error) => {
-                console.error('Error fetching filtered temples:', error);
-            }
-        );
-    }
+//         this.templeservice.getalltemples().subscribe(
+//             (response) => {
+//                 this.globaltemples = [...this.globaltemples, ...response.results];
+//                 console.log(this.globaltemples, "Filtered Temples without Category or Location");
+//             },
+//             (error) => {
+//                 console.error('Error fetching filtered temples:', error);
+//             }
+//         );
+//     }
 
 
-}
+// }
 
 
 cleardata(){
@@ -606,66 +606,65 @@ onVillageSelect(selectedValue: string) {
 }
 
 
-
-
-
-
-// currentPage = 1;
-// pageSize = 10; // Items per page
-
-// get paginatedTemples() {
-//   const start = (this.currentPage - 1) * this.pageSize;
-//   return this.globaltemples.slice(start, start + this.pageSize);
-// }
-
-// changePage(page: number) {
-//   this.currentPage = page;
-// }
-
-
-pageSize: number = 20;
-currentPages: number = 1;
-  // get paginatedTemples(): any[] {
-  //   const start = (this.currentPages - 1) * this.pageSize;
-  //   return this.globaltemples.slice(start, start + this.pageSize);
-  // }
-
-  // get totalPages(): number {
-  //   return Math.ceil(this.globaltemples.length / this.pageSize);
-  // }
-
-  // changePage(page: number) {
-  //   if (page >= 1 && page <= this.totalPages) {
-  //     this.currentPages = page;
-  //   }
-
-
-  // }
-
-
-
-
-get paginatedTemples(): any[] {
-    const start = (this.currentPage - 1) * this.pageSize;
-    const end = start + this.pageSize;
-    return this.globaltemples.slice(start, end);
-  }
-
-  get totalPages(): number {
-    const count = this.globaltemples.length;
-    return count > 0 ? Math.ceil(count / this.pageSize) : 1;
-  }
-
-  changePage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-
-      // Optional: If paginated results are empty (e.g., after filtering), go back a page
-      if (this.paginatedTemples.length === 0 && this.currentPage > 1) {
-        this.currentPage--;
-      }
+previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.globaltemples = [];
+      this.loadFilteredTemples();
     }
   }
+
+  nextPage(): void {
+    if (this.hasMoreData) {
+      this.currentPage++;
+      this.loadFilteredTemples();
+    }
+  }
+
+
+   loadFilteredTemples(reset: boolean = false) {
+    if (reset) {
+      this.currentPage = 1;
+      this.globaltemples = [];
+      this.hasMoreData = true;
+    }
+
+    let fetch$;
+
+    if (this.selectedCategoryId && this.selectedLocationId) {
+      fetch$ = this.templeservice.filterinactiveemple(this.selectedCategoryId, this.selectedLocationId, this.currentPage);
+    } else if (this.selectedCategoryId) {
+      fetch$ = this.templeservice.filterinactiveemple(this.selectedCategoryId, '', this.currentPage);
+    } else if (this.selectedLocationId) {
+      fetch$ = this.templeservice.filterinactiveemple('', this.selectedLocationId, this.currentPage);
+    } else {
+fetch$ = this.templeservice.getalltemples(this.currentPage);
+    }
+
+    fetch$.subscribe(
+      (response: any) => {
+        const newResults = response.results || [];
+
+        this.globaltemples = [...this.globaltemples, ...newResults];
+        this.hasMoreData = newResults.length > 0;
+      },
+      (error) => {
+        console.error('Error fetching temples:', error);
+      }
+    );
+  }
+
+
+  hasMoreData = true;
+
+
+addTemple(){
+  this.router.navigate(['addtemple'])
+}
+
+
+
+
 
 
 

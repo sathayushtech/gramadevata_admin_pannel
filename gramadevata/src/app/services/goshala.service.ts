@@ -49,4 +49,8 @@ export class GoshalaService {
     return this.httpclient.put(updateUrl, goshalaData);
   }
   
+
+   addgoshala(GoshalaData:any):Observable<any>{
+    return this.httpclient.post(URL+"goshala",GoshalaData)
+  }
 }

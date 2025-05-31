@@ -40,4 +40,8 @@ export class EventService {
     const updateUrl = `${URL}event/${eventId}`;  
     return this.httpclient.put(updateUrl, eventData);
   }
+
+   addevent(eventData: any): Observable<any> {
+    return this.httpclient.post(URL+"event", eventData);
+  }
 }
