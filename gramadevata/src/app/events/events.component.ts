@@ -58,4 +58,7 @@ export class EventsComponent {
         this.router.navigate(['edit_event',_id])
       }
 
+      addEvent(){
+  this.router.navigate(['addevent'])
+}
 }

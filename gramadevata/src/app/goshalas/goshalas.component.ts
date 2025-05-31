@@ -133,5 +133,9 @@ export class GoshalasComponent {
     );
   }
   
+
+  addGoshala(){
+    this.router.navigate(['addgoshala'])
+  }
   
 }

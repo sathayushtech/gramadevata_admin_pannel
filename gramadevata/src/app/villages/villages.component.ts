@@ -40,4 +40,8 @@ export class VillagesComponent {
   navigateToVilage(_id: string){
     this.router.navigate(['edit_village', _id])
   }
+
+  addVillage(){
+    this.router.navigate(['addvillage'])
+  }
 }

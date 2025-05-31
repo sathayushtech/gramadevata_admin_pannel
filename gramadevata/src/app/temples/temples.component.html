@@ -161,7 +161,7 @@
 
 
 
-      <div class="col-12 col-md-3 border-end d-flex flex-column">
+      <!-- <div class="col-12 col-md-3 border-end d-flex flex-column">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h5 class="mb-0">Temples</h5>
         
@@ -200,11 +200,78 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
+
+
+
+      <div class="col-12 col-md-3 border-end d-flex flex-column">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">Temples</h5>
+
+    <nz-select
+      class="custom-height"
+      style="width: 250px;"
+      nzPlaceHolder="Select Deity Category"
+      nzNotFoundContent="No data found"
+      [nzShowSearch]="true"
+      [(ngModel)]="selectedCategoryId"
+      (ngModelChange)="onSelectCategory($event)"
+    >
+      <nz-option 
+        *ngFor="let option of CategoryOptions"
+        [nzValue]="option.value"
+        [nzLabel]="option.label">
+      </nz-option>
+    </nz-select>
+  </div>
+
+  <hr>
+
+  <div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
+    <ul class="list-unstyled">
+      <li *ngFor="let temple of globaltemples" class="mb-2">
+        <button class="btn w-100 d-flex align-items-center"
+          [ngClass]="{
+            'btn-outline-primary': selectedTemple !== temple,
+            'btn-primary': selectedTemple === temple
+          }"
+          (click)="selectTemple(temple)">
+          <img [src]="temple.image_location[0] ? temple.image_location[0] : 'assets/ohm.jpg'" alt="temple logo"
+            width="30" height="30" class="me-2 rounded-circle" (error)="handleProfileImageError($event)" />
+          {{ temple.name }}
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <button class="btn btn-sm btn-outline-primary"
+            (click)="previousPage()"
+            [disabled]="currentPage === 1">
+      Previous
+    </button>
+
+    <span>Page {{ currentPage }}</span>
+
+    <button class="btn btn-sm btn-outline-primary"
+            (click)="nextPage()"
+            [disabled]="!hasMoreData">
+      Next
+    </button>
+  </div>
+</div>
 
       <!-- Temple Details -->
       <div class="col-12 col-md-5 border-end d-flex flex-column">
-        <h5>Temple Category</h5>
+        <h5 class="d-flex justify-content-between align-items-center">
+        <span>Temple Category</span>
+        <button (click)="addTemple()"
+                class="btn btn-sm"
+                style="border: 1px solid rgb(238, 141, 51); background-color: rgb(238, 141, 51); border-radius: 20px; color: black; font-size: 14px;">
+          + Add Temple
+        </button>
+      </h5>
         <hr>
         <div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
           <div *ngIf="selectedTemple">
