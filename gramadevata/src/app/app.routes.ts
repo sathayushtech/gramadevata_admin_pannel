@@ -14,10 +14,11 @@ import { authGuard } from './auth.guard';
 import { AddeventComponent } from './addevent/addevent.component';
 import { AddgoshalaComponent } from './addgoshala/addgoshala.component';
 import { AddvillageComponent } from './addvillage/addvillage/addvillage.component';
+import { HindusworldOrganizationComponent } from './hindusworld-organization/hindusworld-organization.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
-    {path: 'temples', component: TemplesComponent,canActivate: [authGuard],},
+    {path: 'temples', component: TemplesComponent},
     {path: 'events', component: EventsComponent,canActivate: [authGuard]},
     {path: 'goshalas', component: GoshalasComponent, canActivate: [authGuard],},
     {path: 'edit_temple/:id', component: EditTempleComponent},
@@ -28,7 +29,8 @@ export const routes: Routes = [
     {path: 'addtemple', component: AddtempleComponent},
     {path:'addevent', component: AddeventComponent},
     {path: 'addgoshala', component: AddgoshalaComponent},
-    {path: 'addvillage', component: AddvillageComponent}
+    {path: 'addvillage', component: AddvillageComponent},
+    {path:'organizations',component:HindusworldOrganizationComponent},
     
 
 ];

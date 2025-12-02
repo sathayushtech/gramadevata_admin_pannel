@@ -66,6 +66,12 @@ navigatevillages(): void {
 }
 
 
+navigateorganization(): void {
+  this.activeLink = 'organizations';
+  this.router.navigate(['organizations']);
+}
+
+
 // signup(): void{
 //   this.router.navigate(['signup'])
 // }
