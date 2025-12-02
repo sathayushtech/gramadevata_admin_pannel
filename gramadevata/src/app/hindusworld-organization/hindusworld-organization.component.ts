@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
+import { Subject } from 'rxjs/internal/Subject';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class HindusworldOrganizationComponent {
 
  organizations: any[] = [];
    bannerFileList: NzUploadFile[] = [];
+searchSubject = new Subject<string>();
 
 selectedOrganization: any = null;
   editMode: boolean = false;
@@ -26,6 +29,14 @@ selectedOrganization: any = null;
 
   ngOnInit(): void {
     this.loadOrganizations();
+
+      this.searchSubject.pipe(
+    debounceTime(400),
+    distinctUntilChanged()
+  ).subscribe(term => {
+this.loadOrganizations(term);
+  });
+
 
         this.editForm = this.fb.group({
       organization_name: [''],
@@ -50,13 +61,17 @@ selectedOrganization: any = null;
   });
   }
 
-  loadOrganizations() {
-    this.orgService.getorganizations().subscribe((res: any) => {
-      this.organizations = res.results; 
-    });
-  }
+  // loadOrganizations() {
+  //   this.orgService.getorganizations().subscribe((res: any) => {
+  //     this.organizations = res.results; 
+  //   });
+  // }
 
-
+loadOrganizations(search: string = '') {
+  this.orgService.getorganizations(search).subscribe((res: any) => {
+    this.organizations = res.results;
+  });
+}
 
 
   selectOrganization(id: string) {
@@ -278,8 +293,28 @@ fetchSubcategories(mainCategoryId: string): void {
   );
 }
 
+searchTerm: string = '';
 
 
+onSearchChange(term: string) {
+  this.searchTerm = term;
+  this.searchSubject.next(term);
+}
+
+deleteOrganization(id: string) {
+  if (!confirm("Are you sure you want to delete this organization?")) return;
+
+  this.orgService.Deleteorganization(id).subscribe({
+    next: () => {
+      alert("Organization deleted successfully");
+      this.loadOrganizations(); // reload list after delete
+    },
+    error: (err) => {
+      console.error(err);
+      alert("Failed to delete organization");
+    }
+  });
+}
 
 
 

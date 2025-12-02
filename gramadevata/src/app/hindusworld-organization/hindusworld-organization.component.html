@@ -4,9 +4,17 @@
     <div class="col-md-6 col-lg-6 col-xl-6 mt-5 hide-scrollbar"
          style="overflow-y: scroll; height: 90vh; border-right: 1px solid #ddd;">
 
+
       <section>
         <div class="container-fluid card mt-3">
           <div class="slider-div">
+            <input
+  type="text"
+  class="form-control"
+  placeholder="Search organization"
+  [(ngModel)]="searchTerm"
+  (ngModelChange)="onSearchChange($event)"
+>
             <ng-container *ngIf="organizations">
               <div class="row mt-3 g-1">
                 <div *ngFor="let organization of organizations"
@@ -42,12 +50,27 @@
   <div *ngIf="selectedOrganization" class="card p-3 shadow-sm">
 
     <div *ngIf="!editMode">
-      
+<!--       
       <div class="text-end mb-2">
         <button class="btn btn-primary btn-sm" (click)="enableEdit()">
           <i class="fas fa-edit"></i> Edit
         </button>
-      </div>
+      </div> -->
+
+      <div class="text-end mb-2 d-flex justify-content-end gap-2">
+
+  <!-- Edit Button -->
+  <button class="btn btn-primary btn-sm" (click)="enableEdit()">
+    <i class="fas fa-edit"></i> Edit
+  </button>
+
+<button class="btn btn-danger btn-sm" (click)="deleteOrganization(selectedOrganization._id)">
+  <i class="fas fa-trash"></i>
+</button>
+
+
+</div>
+
 
       <h3>{{ selectedOrganization.organization_name }}</h3>
 
