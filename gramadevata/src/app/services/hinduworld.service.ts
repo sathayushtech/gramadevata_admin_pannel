@@ -11,9 +11,19 @@ export class HinduworldService {
   constructor(private httpclient: HttpClient) { }
 
 
-    getorganizations():Observable<any>{
-      return this.httpclient.get(URL1+"admin_organization")
-    }
+    // getorganizations():Observable<any>{
+    //   return this.httpclient.get(URL1+"admin_organization")
+    // }
+
+
+      getorganizations(search: string = '', ): Observable<any> {
+    return this.httpclient.get(`${URL1}admin_organization`, {
+      params: {
+
+      search: search,
+      }
+    });
+  }
 
       getorganizationsbyid(id:string):Observable<any>{
       return this.httpclient.get(URL1+"admin_organization/"+id)
@@ -31,5 +41,11 @@ export class HinduworldService {
         getorganizationsubCategories(_id:string):Observable<any>{
         return this.httpclient.get(URL1+"category/"+_id+"/subcategories")   
       }
+
+
+
+            Deleteorganization(id:string):Observable<any>{
+      return this.httpclient.delete(URL1+"admin_organization/"+id)
+    }
 
 }
