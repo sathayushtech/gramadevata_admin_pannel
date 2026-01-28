@@ -33,6 +33,51 @@
                [ngClass]="{ 'active custom-active-tab': activeLink === 'organizations' }"
                (click)="navigateorganization()"><b style="color: black;">Organization</b></a>
           </li>
+
+                      <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle px-3"
+                id="aboutUsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Add more
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-start mt-2  shadow dropdown-ui">
+                <li>
+                  <a class="dropdown-item dropdown-link " 
+                    routerLink="/Temple-added-data" (click)="navigateToadd('Temple-added-data')"
+                    (click)="closeNavbar()">
+                    Temples
+                  </a>
+                </li>
+
+                <li><hr class="dropdown-divider my-1"></li>
+
+                <li>
+                  <a class="dropdown-item dropdown-link"
+                    routerLink="/village-added-data" (click)="navigateToadd('village-added-data')"
+                    (click)="closeNavbar()">
+                    Villages
+                  </a>
+                </li>
+                                <li>
+                  <a class="dropdown-item dropdown-link"
+                    routerLink="/event-added-data" (click)="navigateToadd('event-added-data')"
+                    (click)="closeNavbar()">
+                    Events
+                  </a>
+                </li>
+                                <li>
+                  <a class="dropdown-item dropdown-link"
+                    routerLink="/goshala-added-data" (click)="navigateToadd('goshala-added-data')"
+                    (click)="closeNavbar()">
+                    Goshals
+                  </a>
+                </li>
+              </ul>
+            </li>
         </ul>
   
         <ng-container *ngIf="!authenticationService.isLoggedIn; else loggedInBlock">

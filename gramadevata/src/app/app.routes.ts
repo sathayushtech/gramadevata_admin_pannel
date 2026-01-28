@@ -15,6 +15,10 @@ import { AddeventComponent } from './addevent/addevent.component';
 import { AddgoshalaComponent } from './addgoshala/addgoshala.component';
 import { AddvillageComponent } from './addvillage/addvillage/addvillage.component';
 import { HindusworldOrganizationComponent } from './hindusworld-organization/hindusworld-organization.component';
+import { AddMoreTempleDataComponent } from './add-more-temple-data/add-more-temple-data.component';
+import { VillageAddMoreDataComponent } from './village-add-more-data/village-add-more-data.component';
+import { EventAddMoreDataComponent } from './event-add-more-data/event-add-more-data.component';
+import { GoshalaAddMoreDataComponent } from './goshala-add-more-data/goshala-add-more-data.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
@@ -31,6 +35,10 @@ export const routes: Routes = [
     {path: 'addgoshala', component: AddgoshalaComponent},
     {path: 'addvillage', component: AddvillageComponent},
     {path:'organizations',component:HindusworldOrganizationComponent},
+    {path:'Temple-added-data',component:AddMoreTempleDataComponent},
+    {path:'village-added-data',component:VillageAddMoreDataComponent},
+    {path:'event-added-data',component:EventAddMoreDataComponent},
+    {path:'goshala-added-data',component:GoshalaAddMoreDataComponent}
     
 
 ];

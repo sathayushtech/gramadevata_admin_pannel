@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { SignupComponent } from '../signup/signup.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthenticationService } from '../services/authentication.service';
@@ -187,4 +187,40 @@ profiledata(){
   this.profile_pic = localStorage.getItem('profile_pic')
   this.username = localStorage.getItem('full_name')
 }
+
+  ngAfterViewInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.closeNavbar();
+      }
+    });
+  }
+
+  closeNavbar(): void {
+    const navEl = this.mainNavRef?.nativeElement;
+    if (navEl?.classList.contains('show')) {
+      navEl.classList.remove('show');
+    }
+  }
+
+    @ViewChild('mainNavRef') mainNavRef!: ElementRef;
+
+
+    navigateToadd(route: string): void {
+  
+  const isMemberIn = localStorage.getItem("is_member") === "true"; // Convert the string to a boolean
+  let userId = this.authenticationService.getCurrentUser();
+    if (userId == undefined || userId == null) {
+      this.authenticationService.showLoginModal()
+      return;
+    }
+  
+  if (isMemberIn) {
+    this.router.navigate([route]);
+  } else {
+    
+    // this.userservice.showMemberModal();
+  }
+}
+
 }

@@ -106,5 +106,43 @@ export class TempleService {
   addTemple(templeData: any): Observable<any> {
     return this.httpclient.post(URL+"temple", templeData);
   }
+
+  Templeaddmoredata():Observable<any>{
+    return this.httpclient.get(URL+"add_more_temple_details")
+  }
+
+    villageddmoredata():Observable<any>{
+    return this.httpclient.get(URL+"add_more_village_details")
+  }
+
+    goshaladdmoredata():Observable<any>{
+    return this.httpclient.get(URL+"add_more_goshala_details")
+  }
+
+      eventaddmoredata():Observable<any>{
+    return this.httpclient.get(URL+"add_more_event_details")
+  }
+
+
+  Mergetempledata(templeId: string, templeData: any): Observable<any> {
+    const updateUrl = `${URL}templemerge/${templeId}/`;  // Assuming the temple ID is passed in the URL
+    return this.httpclient.put(updateUrl, templeData);
+  }
+
+
+    Mergevillagedata(templeId: string, templeData: any): Observable<any> {
+    const updateUrl = `${URL}mergevillage/${templeId}/`;  // Assuming the temple ID is passed in the URL
+    return this.httpclient.put(updateUrl, templeData);
+  }
+
+      Mergeeventdata(templeId: string, templeData: any): Observable<any> {
+    const updateUrl = `${URL}eventmerge/${templeId}`;  // Assuming the temple ID is passed in the URL
+    return this.httpclient.put(updateUrl, templeData);
+  }
+
+        Mergegoshaladata(templeId: string, templeData: any): Observable<any> {
+    const updateUrl = `${URL}goshalamerge/${templeId}`;  // Assuming the temple ID is passed in the URL
+    return this.httpclient.put(updateUrl, templeData);
+  }
   
 }
