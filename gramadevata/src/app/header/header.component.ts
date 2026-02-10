@@ -64,7 +64,15 @@ navigatevillages(): void {
   this.activeLink = 'villages';
   this.router.navigate(['villages']);
 }
+navigatetourism(): void {
+  this.activeLink = 'Tourism';
+  this.router.navigate(['Tourism']);
+}
 
+navigatewelfarehome(): void {
+  this.activeLink = 'Welfare home';
+  this.router.navigate(['Welfare home']);
+}
 
 navigateorganization(): void {
   this.activeLink = 'organizations';

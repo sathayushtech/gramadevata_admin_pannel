@@ -53,4 +53,24 @@ export class GoshalaService {
    addgoshala(GoshalaData:any):Observable<any>{
     return this.httpclient.post(URL+"goshala",GoshalaData)
   }
+
+
+  
+  getalltourism():Observable<any>{
+      return this.httpclient.get(URL+"tourism_inactive")
+    }
+
+
+    getbytourism(_id:string):Observable<any>{
+    return this.httpclient.get(URL+'tourism_inactive/'+_id)
+  }
+
+    getallwelfare():Observable<any>{
+      return this.httpclient.get(URL+"welfarehomes_inactive")
+    }
+
+
+    getbywelfare(_id:string):Observable<any>{
+    return this.httpclient.get(URL+'welfarehomes_inactive/'+_id)
+  }
 }

@@ -13,38 +13,7 @@ import { GoshalaService } from '../services/goshala.service';
   styleUrl: './goshalas.component.css'
 })
 export class GoshalasComponent {
-//   goshalas: any;
-//   selectedGoshala: any = null
-//   constructor( private goshalaService: GoshalaService,
-//                private router: Router
-//   ){}
 
-//   ngOnInit(){ 
-//     this.loadGoshalas();
-//   }
-
-//   loadGoshalas(): void {
-//     this.goshalaService.GetallGoshala().subscribe(
-//       (data) => {
-//         this.goshalas = data;
-//       },
-//       (error) => {
-//         console.error('Error fetching goshalas:', error);
-//       }
-//     );
-//   }
-
-//   navigateToGoshala(goshalaId: string): void {
-//     this.selectedGoshala= goshalaId;
-    
-//     this.router.navigate(['goshala', goshalaId]);  // Adjust route path as needed
-//   }
-  
-//   handleImageError(event: Event) {
-//     const img = event.target as HTMLImageElement;
-//     img.src = 'assets/gaumata.jpg'; // fallback image
-//   }
-// }
  temples: any;
   selectedTemple: any = null;
   blockId: any;
@@ -70,20 +39,7 @@ export class GoshalasComponent {
     this.getAllCategories();
   }
 
-  
 
-
-  // fetchagoshals(): void {
-  //   this.goshalaService.getallgoshalas().subscribe({
-  //     next: (data: any[]) => {
-  //       this.temples = data.goshala
-  //       console.log('All temples (sorted):', this.temples);
-  //     },
-  //     error: (error: any) => {
-  //       console.error('Error fetching temples:', error);
-  //     }
-  //   });
-  // }
   
       fetchagoshals() {
       this.goshalaService.getallgoshalas().subscribe(

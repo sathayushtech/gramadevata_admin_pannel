@@ -20,6 +20,8 @@ import { VillageAddMoreDataComponent } from './village-add-more-data/village-add
 import { EventAddMoreDataComponent } from './event-add-more-data/event-add-more-data.component';
 import { GoshalaAddMoreDataComponent } from './goshala-add-more-data/goshala-add-more-data.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TourismComponent } from './tourism/tourism.component';
+import { WelfareHomesComponent } from './welfare-homes/welfare-homes.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
@@ -40,7 +42,9 @@ export const routes: Routes = [
     {path:'village-added-data',component:VillageAddMoreDataComponent},
     {path:'event-added-data',component:EventAddMoreDataComponent},
     {path:'goshala-added-data',component:GoshalaAddMoreDataComponent},
-    {path:'dashboard',component:DashboardComponent}
+    {path:'dashboard',component:DashboardComponent},
+    {path:"Tourism",component:TourismComponent},
+    {path:"Welfare home",component:WelfareHomesComponent}
     
 
 ];
