@@ -107,7 +107,22 @@ export class UserService {
     return this.httpclient.post(URL+'deleteimage/'+userId, imagedata)
   }
 
+  // getallusers(): Observable<any>{
+  //   return this .httpclient.get(URL+ "profile_get/")
+  // }
 
+  profiledatabyid(id:any): Observable<any>{
+    return this.httpclient.get(URL+"admin_profile_get_by_id/"+id)
+  }
+
+  
+  getallusers( search: string = '', ): Observable<any> {
+    return this.httpclient.get(`${URL}profile_get/`, {
+      params: {
+         search: search,
+      }
+    });
+  }
 
 
 }

@@ -4,4 +4,47 @@
     color: white !important;
     border-color: orange !important;
   }
-  
+  .header-bg {
+  background: linear-gradient(to right, #f44336, #ff6f00, #b18334);
+  height: 60px;
+}
+
+.sidebar-fixed {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  overflow-y: auto;
+  width: 240px;
+}
+
+.content-area {
+  margin-top: 60px;
+  margin-left: 240px;
+}
+
+.nav-link {
+  color: #333;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: #f2f2f2;
+}
+
+.nav-link.active {
+  background-color: #ffe0b2;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .sidebar-fixed {
+    position: static;
+    width: 100%;
+  }
+
+  .content-area {
+    margin-left: 0;
+  }
+}

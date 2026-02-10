@@ -72,6 +72,8 @@ if (storedCategory) {
   
   selectTemple(temple: any): void {
     this.selectedTemple = temple;
+      this.nearbytemples = temple.nearby_temples || [];
+
     this.villageid = temple.object_id
     console.log(this.villageid,"23121323435")
     this.templeservice.filterTemple('', this.villageid).subscribe(
@@ -79,7 +81,7 @@ if (storedCategory) {
         const filteredResults = filterData.results.filter(
           (temple: any) => temple._id !== this.templeId
         );
-        this.nearbytemples = filteredResults;
+        // this.nearbytemples = filteredResults;
         
         console.log("Nearby temples:", this.nearbytemples);
       },

@@ -19,6 +19,7 @@ import { AddMoreTempleDataComponent } from './add-more-temple-data/add-more-temp
 import { VillageAddMoreDataComponent } from './village-add-more-data/village-add-more-data.component';
 import { EventAddMoreDataComponent } from './event-add-more-data/event-add-more-data.component';
 import { GoshalaAddMoreDataComponent } from './goshala-add-more-data/goshala-add-more-data.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
@@ -38,7 +39,8 @@ export const routes: Routes = [
     {path:'Temple-added-data',component:AddMoreTempleDataComponent},
     {path:'village-added-data',component:VillageAddMoreDataComponent},
     {path:'event-added-data',component:EventAddMoreDataComponent},
-    {path:'goshala-added-data',component:GoshalaAddMoreDataComponent}
+    {path:'goshala-added-data',component:GoshalaAddMoreDataComponent},
+    {path:'dashboard',component:DashboardComponent}
     
 
 ];

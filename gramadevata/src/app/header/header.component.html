@@ -1,5 +1,12 @@
+            <!-- <li class="nav-item">
+            <a class="nav-link"
+               [ngClass]="{ 'active custom-active-tab': activeLink === 'organizations' }"
+               (click)="navigateorganization()"><b style="color: black;">Organization</b></a>
+          </li> -->
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-2" 
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-2" 
      style="background: linear-gradient(to right, #f44336, #ff6f00, #b18334); z-index: 1;">
     <div class="container d-flex justify-content-between align-items-center">
       
@@ -28,11 +35,7 @@
                [ngClass]="{ 'active custom-active-tab': activeLink === 'villages' }"
                (click)="navigatevillages()"><b style="color: black;">Villages</b></a>
           </li>
-            <li class="nav-item">
-            <a class="nav-link"
-               [ngClass]="{ 'active custom-active-tab': activeLink === 'organizations' }"
-               (click)="navigateorganization()"><b style="color: black;">Organization</b></a>
-          </li>
+
 
                       <li class="nav-item dropdown">
               <a
@@ -107,9 +110,7 @@
                 <span class="mt-1">{{user.full_name}}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <!-- <li>
-                  <a class="dropdown-item" (click)="navigateTo()" routerLinkActive="active">View Profile</a>
-                </li> -->
+
                 <li>
                   <a class="dropdown-item" (click)="doLogout()" routerLinkActive="active">Logout</a>
                 </li>
@@ -121,5 +122,254 @@
       </div> 
   
     </div>
-  </nav>
-  
+  </nav> -->
+
+
+
+  <!-- ================= TOP HEADER ================= -->
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm header-bg">
+  <div class="container-fluid">
+
+    <!-- Sidebar toggle (Mobile) -->
+    <button class="btn btn-outline-dark d-lg-none me-2"
+            data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu">
+      ☰
+    </button>
+
+    <!-- Brand -->
+    <span class="navbar-brand fw-bold text-dark">
+      Gramadevata Admin
+    </span>
+
+    <!-- Right section -->
+    <ul class="navbar-nav ms-auto align-items-center">
+
+      <!-- Sign In -->
+      <li class="nav-item" *ngIf="!authenticationService.isLoggedIn">
+        <button class="btn btn-warning text-white rounded-pill"
+                (click)="openSignupDialog()">
+          Sign In
+        </button>
+      </li>
+
+      <!-- Profile -->
+      <li class="nav-item dropdown" *ngIf="authenticationService.isLoggedIn">
+        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+           role="button"
+           data-bs-toggle="dropdown">
+          <img [src]="profileImageUrl"
+               class="rounded-circle"
+               width="36"
+               height="36"
+               (error)="handleProfileImageError($event)">
+          <span class="fw-semibold text-dark">
+            {{ user?.full_name || 'User' }}
+          </span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <!-- <li>
+            <a class="dropdown-item" (click)="navigateTo()">
+              👤 Profile
+            </a>
+          </li> -->
+          <!-- <li><hr class="dropdown-divider"></li> -->
+          <li>
+            <a class="dropdown-item text-danger" (click)="doLogout()">
+              🚪 Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<!-- <div class="container-fluid">
+  <div class="row">
+
+    <nav id="sidebarMenu"
+         class="col-lg-2 d-lg-block bg-white border-end collapse sidebar-fixed">
+
+      <ul class="nav flex-column pt-3 gap-1">
+                <li class="nav-item">
+          <a class="nav-link fw-semibold"
+             routerLink="/dashboard"
+             (click)="navigateTodashboard()"
+             routerLinkActive="active">
+            🏠 Dashboard
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [ngClass]="{active: activeLink === 'temples'}"
+             (click)="navigateTotemples()">
+            🛕 Temples
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [ngClass]="{active: activeLink === 'goshalas'}"
+             (click)="navigategoshala()">
+            🐄 Goshalas
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [ngClass]="{active: activeLink === 'events'}"
+             (click)="navigateevents()">
+            📅 Events
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [ngClass]="{active: activeLink === 'villages'}"
+             (click)="navigatevillages()">
+            🏘 Villages
+          </a>
+        </li>
+
+        <li class="nav-item dropdown mt-2">
+          <a class="nav-link dropdown-toggle"
+             data-bs-toggle="dropdown">
+            ➕ Add More
+          </a>
+
+          <ul class="dropdown-menu shadow">
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('Temple-added-data')">
+                Temples
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('village-added-data')">
+                Villages
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('event-added-data')">
+                Events
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('goshala-added-data')">
+                Goshalas
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+
+  </div>
+</div> -->
+
+  <div class="container-fluid">
+  <div class="row">
+
+    <nav id="sidebarMenu"
+         class="col-lg-2 d-lg-block bg-white border-end collapse sidebar-fixed">
+
+      <!-- Sidebar Header -->
+      <div class="text-center py-3 ">
+        <!-- <h6 class="fw-bold text-primary mb-0">🛕 Admin Panel</h6> -->
+      </div>
+
+      <ul class="nav flex-column py-3 px-2 gap-1">
+
+        <!-- Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2 fw-semibold"
+             routerLink="/dashboard"
+             (click)="navigateTodashboard()"
+             [ngClass]="{ 'bg-primary text-white fw-semibold': activeLink === 'dashboard' }"
+             routerLinkActive="active bg-primary text-white">
+            🏠 Dashboard
+          </a>
+        </li>
+
+        <!-- Temples -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2"
+             [ngClass]="{ 'bg-primary text-white fw-semibold': activeLink === 'temples' }"
+             (click)="navigateTotemples()">
+            🛕 Temples
+          </a>
+        </li>
+
+        <!-- Goshalas -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2"
+             [ngClass]="{ 'bg-primary text-white fw-semibold': activeLink === 'goshalas' }"
+             (click)="navigategoshala()">
+            🐄 Goshalas
+          </a>
+        </li>
+
+        <!-- Events -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2"
+             [ngClass]="{ 'bg-primary text-white fw-semibold': activeLink === 'events' }"
+             (click)="navigateevents()">
+            📅 Events
+          </a>
+        </li>
+
+        <!-- Villages -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 rounded px-3 py-2"
+             [ngClass]="{ 'bg-primary text-white fw-semibold': activeLink === 'villages' }"
+             (click)="navigatevillages()">
+            🏘 Villages
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <li class="nav-item my-2">
+          <hr class="text-secondary">
+        </li>
+
+        <!-- Add More Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 rounded px-3 py-2 fw-semibold"
+             data-bs-toggle="dropdown">
+            ➕ Add More
+          </a>
+
+          <ul class="dropdown-menu w-100 shadow-sm">
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('Temple-added-data')">
+                🛕  Temple
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('village-added-data')">
+                🏘  Village
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('event-added-data')">
+                📅  Event
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="navigateToadd('goshala-added-data')">
+                🐄  Goshala
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+</div>

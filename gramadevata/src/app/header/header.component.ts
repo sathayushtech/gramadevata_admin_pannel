@@ -72,6 +72,11 @@ navigateorganization(): void {
 }
 
 
+navigateTodashboard(): void {
+  this.activeLink = 'dashboard';
+  this.router.navigate(['dashboard']);
+}
+
 // signup(): void{
 //   this.router.navigate(['signup'])
 // }

@@ -73,21 +73,29 @@ export class GoshalasComponent {
   
 
 
-  fetchagoshals(): void {
-    this.goshalaService.getallgoshalas().subscribe({
-      next: (data: any[]) => {
-        this.temples = data.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
-        console.log('All temples (sorted):', this.temples);
-      },
-      error: (error: any) => {
-        console.error('Error fetching temples:', error);
-      }
-    });
-  }
+  // fetchagoshals(): void {
+  //   this.goshalaService.getallgoshalas().subscribe({
+  //     next: (data: any[]) => {
+  //       this.temples = data.goshala
+  //       console.log('All temples (sorted):', this.temples);
+  //     },
+  //     error: (error: any) => {
+  //       console.error('Error fetching temples:', error);
+  //     }
+  //   });
+  // }
   
-  
+      fetchagoshals() {
+      this.goshalaService.getallgoshalas().subscribe(
+        (data) => {
+          console.log("Inactive goshala fetched:", data);
+          this.temples = data.goshala
+        },
+        (error) => {
+          console.error("Error fetching inactive goshala:", error);
+        }
+      );
+    }
  
 
 

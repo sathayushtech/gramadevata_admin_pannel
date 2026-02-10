@@ -1,10 +1,6 @@
 <div class="container-fluid my-4 p-4 border rounded " style="min-height: 100vh; display: flex; flex-direction: column;">
   
-  
-  <div class="mb-3">
-    <h4 class="mt-5"></h4>
-    <!-- or your navbar, title, or any info -->
-  </div>
+
 
   <!-- Scrollable Content Part -->
   <div class="flex-grow-1 overflow-auto hide-scrollbar">
@@ -155,55 +151,6 @@
         </div>
       </div>
 
-
-
-
-
-
-
-      <!-- <div class="col-12 col-md-3 border-end d-flex flex-column">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0">Temples</h5>
-        
-          <nz-select
-            class="custom-height"
-            style="width: 250px;"
-            nzPlaceHolder="Select Deity Category"
-            nzNotFoundContent="No data found"
-            [nzShowSearch]="true"
-            [(ngModel)]="selectedCategoryId"
-            (ngModelChange)="onSelectCategory($event)"
-          >
-            <nz-option 
-              *ngFor="let option of CategoryOptions"
-              [nzValue]="option.value"
-              [nzLabel]="option.label">
-            </nz-option>
-          </nz-select>
-        </div>
-        
-        
-        <hr>
-        <div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
-          <ul class="list-unstyled">
-            <li *ngFor="let temple of globaltemples" class="mb-2">
-              <button class="btn w-100 d-flex align-items-center"
-                [ngClass]="{
-                  'btn-outline-primary': selectedTemple !== temple,
-                  'btn-primary': selectedTemple === temple
-                }"
-                (click)="selectTemple(temple)">
-                <img [src]="temple.image_location[0] ? temple.image_location[0] : 'assets/ohm.jpg'"alt="temple logo" width="30" height="30"
-                  class="me-2 rounded-circle" (error)="handleProfileImageError($event)" />
-                {{ temple.name }}
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div> -->
-
-
-
       <div class="col-12 col-md-3 border-end d-flex flex-column">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h5 class="mb-0">Temples</h5>
@@ -245,7 +192,7 @@
   </div>
 
   <!-- Pagination Controls -->
-  <div class="d-flex justify-content-between align-items-center mt-3">
+  <!-- <div class="d-flex justify-content-between align-items-center mt-3">
     <button class="btn btn-sm btn-outline-primary"
             (click)="previousPage()"
             [disabled]="currentPage === 1">
@@ -259,7 +206,7 @@
             [disabled]="!hasMoreData">
       Next
     </button>
-  </div>
+  </div> -->
 </div>
 
       <!-- Temple Details -->
@@ -308,7 +255,6 @@
         </div>
       </div>
 
-      <!-- Nearby Temples -->
       <div class="col-12 col-md-4 d-flex flex-column">
         <h5>Near by Temples</h5>
         <hr>
@@ -317,8 +263,8 @@
             <li *ngFor="let temple of nearbytemples" class="mb-2">
               <div class="d-flex justify-content-between align-items-center" (click)="selectTemple(temple)">
                 <div class="btn btn-outline-primary w-100 d-flex align-items-center me-2">
-                  <img [src]="temple.image_location" alt="temple logo" width="30" height="30"
-                    class="me-2 rounded-circle" />
+                  <!-- <img [src]="temple.image_location" alt="temple logo" width="30" height="30"
+                    class="me-2 rounded-circle" /> -->
                   {{ temple.name }}
                 </div>
                 <button class="btn btn-sm btn-outline-secondary ms-2" (click)="editTemple(temple._id); $event.stopPropagation();">

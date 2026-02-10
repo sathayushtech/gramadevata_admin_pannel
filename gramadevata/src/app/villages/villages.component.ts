@@ -23,9 +23,7 @@ export class VillagesComponent {
       this.villageservice.GetallinactiveVillages().subscribe(
         (data) => {
           console.log("Inactive villages fetched:", data);
-          this.villages = data.sort(
-            
-          ); // adjust the key based on API response
+          this.villages = data.villages
         },
         (error) => {
           console.error("Error fetching inactive villages:", error);
