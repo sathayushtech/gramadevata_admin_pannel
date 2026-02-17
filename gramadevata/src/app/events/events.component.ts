@@ -13,12 +13,12 @@ export class EventsComponent {
   fetchallevents: any;
   events: any;
   upcomingevents: any;
+  ongoingevents: any;
   selectedEvent: any = null;
   constructor( private eventservice: EventService, private router: Router){}
 
   ngOnInit(): void {
     this.getinactivevents();
-    this.getinactivevents1()
   }
 
       getinactivevents(){
@@ -28,6 +28,8 @@ export class EventsComponent {
           console.log("Events fetched:", data);
           
           this.events = data.event_completed;
+          this.upcomingevents = data.event_upcoming;
+          this.ongoingevents = data.event_ongoing;
         },
         (error) => {
           console.error("Error fetching events:", error);
@@ -35,19 +37,7 @@ export class EventsComponent {
       );
       }
 
-      getinactivevents1(){
-        this.eventservice.GetallinactiveEvents().subscribe(
-          (data) => {
-      
-            console.log("Events fetched:", data);
-            this.upcomingevents = data.event_upcoming; // now you can use this in your HTML template
-            
-          },
-          (error) => {
-            console.error("Error fetching events:", error);
-          }
-        );
-      }
+
 
       onEventClick(event: any) {
         

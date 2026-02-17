@@ -35,8 +35,14 @@
       </div>
     </div>
 
+    
     <!-- RIGHT PANEL -->
     <div class="col-md-7 col-lg-8">
+              <button (click)="addTourism()"
+                class="btn btn-sm"
+                style="border: 1px solid rgb(238, 141, 51); background-color: rgb(238, 141, 51); border-radius: 20px; color: black; font-size: 14px;">
+           Add Tourism Place
+        </button>
       <div class="card h-100 shadow-sm">
 
         <div class="card-body" *ngIf="selectedTemple; else emptyState">
@@ -88,6 +94,13 @@
         </ng-template>
 
       </div>
+
+<!-- <button
+  class="btn btn-warning btn-sm"
+  (click)="editTourism(selectedTemple)">
+  Edit
+</button> -->
+
     </div>
 
   </div>

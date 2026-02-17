@@ -144,5 +144,20 @@ export class TempleService {
     const updateUrl = `${URL}goshalamerge/${templeId}`;  // Assuming the temple ID is passed in the URL
     return this.httpclient.put(updateUrl, templeData);
   }
+
+
+
+
+
+  gettourismbylocation(_id:string):Observable<any>{
+    return this.httpclient.get(URL+"tourism/"+ _id)
+  }
+
   
+  addTempletourismplaces(templeData: any): Observable<any> {
+    return this.httpclient.post(URL+"tourism", templeData);
+  }
+  updateTempletourismplaces(id: string, data: any): Observable<any> {
+  return this.httpclient.put(URL + 'tourism/' + id, data);
+}
 }

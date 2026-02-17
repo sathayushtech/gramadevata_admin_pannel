@@ -47,7 +47,7 @@
   
   
 
-      <div class="col-md-6 border-end d-flex flex-column">
+      <div class="col-md-4 border-end d-flex flex-column">
 
   <h5 class="d-flex justify-content-between align-items-center">
     <span>Villages</span>
@@ -59,10 +59,9 @@
   </h5>
   <hr>
 
-  <div class="overflow-auto" style="max-height: 680px;">
+  <!-- <div class="overflow-auto" style="max-height: 680px;">
     <ul class="list-unstyled">
 
-      <!-- If villages has data -->
       <ng-container *ngIf="villages?.length > 0; else noDataFound">
         <li *ngFor="let village of villages" class="mb-2">
           <button class="btn w-100 d-flex align-items-center"
@@ -83,7 +82,6 @@
         </li>
       </ng-container>
 
-      <!-- No data template -->
       <ng-template #noDataFound>
         <div class="alert alert-warning text-center" role="alert">
           No villages found.
@@ -91,18 +89,55 @@
       </ng-template>
 
     </ul>
-  </div>
+  </div> -->
+<div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
+  <ul class="list-unstyled">
+    <li *ngFor="let village of villages" class="mb-2">
 
+<button
+  class="temple-btn w-100 d-flex align-items-center"
+  [ngClass]="{ 'selected-temple': selectedVillage?._id === village._id }"
+  (click)="navigateToVillage(village)"
+>
+
+
+        <div class="d-flex align-items-center">
+          <img
+            [src]="village.image_location[0] ? village.image_location[0] : 'assets/ohm.jpg'"
+            width="40"
+            height="40"
+            class="me-3 rounded-circle temple-img"
+            
+          />
+
+          <div class="text-start">
+            <div class="fw-semibold temple-name">
+              {{ village.name }}
+            </div>
+            <small class="text-muted">
+              {{ village.relative_time || '—' }}
+            </small>
+          </div>
+        </div>
+
+      </button>
+
+    </li>
+  </ul>
+</div>
 </div>
 
      
   
-      <div class="col-md-6 border-end d-flex flex-column">
+      <div class="col-md-8 border-end d-flex flex-column">
         <div class="overflow-auto" style="max-height: 780px;">
             <div class="mt-4 d-flex justify-content-center" *ngIf="selectedVillage">
                 <div class="card" style="width: 100%; max-width: 400px;">
                   <img [src]="selectedVillage.image_location" class="card-img-top mx-auto d-block mt-3" alt="{{ selectedVillage.name }}" style="height: 300px; width: 300px; object-fit: cover;">
                   <div class="card-body text-center">
+                     <p style="text-align: end;"><strong>Relative Time:</strong> {{ selectedVillage.relative_time }}</p>
+              <p style="text-align: end;"><strong>Added By:</strong> {{ selectedVillage.user_full_name }}</p>
+            
                     <h5 class="card-title">{{ selectedVillage.name }}</h5>
                     <p><strong>District:</strong> {{ selectedVillage.district }}</p>
                     <p><strong>State:</strong> {{ selectedVillage.state }}</p>

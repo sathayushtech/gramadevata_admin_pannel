@@ -182,3 +182,18 @@
     padding: 8px;
   }
 }
+.temple-btn {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  transition: 0.3s;
+  text-align: left;
+}
+
+/* Only Selected One */
+.selected-temple {
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  color: #fff;
+  border: none;
+}

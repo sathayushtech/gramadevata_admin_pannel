@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { AuthenticationService } from '../services/authentication.service';
 import { GoshalaService } from '../services/goshala.service';
+import { AddTourismComponent } from '../add-tourism/add-tourism.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-tourism',
   imports: [CommonModule, NzSelectModule],
@@ -30,7 +32,8 @@ export class TourismComponent {
 
   constructor(private templeservice: TempleService, private router: Router, private authenticationservice: AuthenticationService,
     private goshalaService: GoshalaService,
-    private route:ActivatedRoute,
+    private route:ActivatedRoute,     private dialog: MatDialog,
+
   ){}
 
   ngOnInit(): void{
@@ -88,8 +91,40 @@ export class TourismComponent {
 
   
 
-  addGoshala(){
-    this.router.navigate(['addgoshala'])
-  }
+addTourism() {
+  const dialogRef = this.dialog.open(AddTourismComponent, {
+    width: '600px',
+    maxHeight: '90vh',
+    data: {
+      mode: 'add'
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 'added') {
+      this.fetchagoshals(); // refresh list
+    }
+  });
+}
+
+
+editTourism(tourismData: any): void {
+
+  const dialogRef = this.dialog.open(AddTourismComponent, {
+    width: '600px',
+    maxHeight: '90vh',
+    data: {
+      mode: 'edit',
+      tourismData: tourismData   // pass full object
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 'updated') {
+      this.fetchagoshals(); // refresh list
+    }
+  });
+}
+
 
 }
