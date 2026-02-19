@@ -23,6 +23,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TourismComponent } from './tourism/tourism.component';
 import { WelfareHomesComponent } from './welfare-homes/welfare-homes.component';
 import { AddTourismComponent } from './add-tourism/add-tourism.component';
+import { TourOperatorsComponent } from './tour-operators/tour-operators.component';
+import { HotelsComponent } from './hotels/hotels.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { TourGuidesComponent } from './tour-guides/tour-guides.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { VetHospitalsComponent } from './vet-hospitals/vet-hospitals.component';
+import { PoojastoresComponent } from './poojastores/poojastores.component';
+import { BloodBanksComponent } from './blood-banks/blood-banks.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
@@ -46,7 +54,17 @@ export const routes: Routes = [
     {path:'dashboard',component:DashboardComponent,canActivate: [authGuard]},
     {path:"Tourism",component:TourismComponent},
     {path:"Welfare home",component:WelfareHomesComponent},
-    {path:"Add Tourism",component:AddTourismComponent}
+    {path:"Add Tourism",component:AddTourismComponent},
+
+    {path:'Tour-Operators',component:TourOperatorsComponent},
+    {path:'Hotels',component:HotelsComponent},
+    {path:'Restaurants',component:RestaurantsComponent},
+    {path:'Tour Guides',component:TourGuidesComponent},
+    {path:'hospitals',component:HospitalsComponent},
+    {path:'vet-hospital',component:VetHospitalsComponent},
+    {path:'pooja-stores',component:PoojastoresComponent},
+    {path:'Blood-banks',component:BloodBanksComponent}
+
     
 
 ];

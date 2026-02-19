@@ -123,6 +123,8 @@ export class UserService {
       }
     });
   }
-
+  usersactiveorinactive(): Observable<any>{
+    return this.httpclient.get(URL+"users/")
+  }
 
 }

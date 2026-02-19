@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { URL } from '../../constant';
@@ -160,4 +160,90 @@ export class TempleService {
   updateTempletourismplaces(id: string, data: any): Observable<any> {
   return this.httpclient.put(URL + 'tourism/' + id, data);
 }
+
+
+////////////////////////////////////////registration forms///////////////////////////
+
+  getInactiveRestaurants(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_restaurants');
+  }
+
+  // Get single restaurant by ID
+  getInactiveRestaurantById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_restaurants', { params });
+  }
+
+    getInactivepooj(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_poojastores');
+  }
+
+  // Get single restaurant by ID
+  getInactivepoojaById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_poojastores', { params });
+  }
+
+
+      getInactivehospitals(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_hospitals');
+  }
+
+  // Get single restaurant by ID
+  getInactivehospitalById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_hospitals', { params });
+  }
+
+
+        getInactivevethospitals(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_veterinary_hospitals');
+  }
+
+  // Get single restaurant by ID
+  getInactivevethospitalById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_veterinary_hospitals', { params });
+  }
+
+        getInactivehotel(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_hotel');
+  }
+
+  // Get single restaurant by ID
+  getInactivehotelById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_hotel', { params });
+  }
+
+          getInactivetouroperator(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_touroperators');
+  }
+
+  // Get single restaurant by ID
+  getInactiveouroperatorById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_touroperators', { params });
+  }
+
+
+            getInactivetourguide(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_tour_guide');
+  }
+
+  // Get single restaurant by ID
+  getInactivetourguideById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_tour_guide', { params });
+  }
+
+              getInactivebloodbank(): Observable<any> {
+    return this.httpclient.get(URL + 'inactive_bloodbanks');
+  }
+
+  // Get single restaurant by ID
+  getInactivebloodbankById(id: string): Observable<any> {
+    const params = new HttpParams().set('_id', id);
+    return this.httpclient.get(URL + 'inactive_bloodbanks', { params });
+  }
 }

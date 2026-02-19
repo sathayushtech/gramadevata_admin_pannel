@@ -58,6 +58,7 @@ searchControl = new FormControl<string>('');
 
 loadAllUsers(search: string = ''): void {
   this.isLoading = true;
+   this.currentFilter = 'all';
 
   this.userService.getallusers(search).subscribe({
     next: (res: any) => {
@@ -91,6 +92,36 @@ loadAllUsers(search: string = ''): void {
       }
     });
   }
+
+inactive_users:any;
+active_users:any;
+
+usersactiveorinactive(type:'all' | 'active' | 'inactive'): void {
+  this.isLoading = true;
+  this.currentFilter = type;
+
+  this.userService.usersactiveorinactive().subscribe({
+    next: (res: any) => {
+
+      if (type === 'active') {
+        this.users = res?.active_users ?? [];
+      } else {
+        this.users = res?.inactive_users ?? [];
+      }
+
+      this.isLoading = false;
+    },
+    error: (err) => {
+      console.error('Failed to load users', err);
+      this.users = [];
+      this.isLoading = false;
+    }
+  });
+}
+
+
+currentFilter: 'all' | 'active' | 'inactive' = 'all';
+
 
 }
 

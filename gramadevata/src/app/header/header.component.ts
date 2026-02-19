@@ -85,9 +85,45 @@ navigateTodashboard(): void {
   this.router.navigate(['dashboard']);
 }
 
-// signup(): void{
-//   this.router.navigate(['signup'])
-// }
+navigatepoojastores(): void {
+  this.activeLink = 'pooja-stores';
+  this.router.navigate(['pooja-stores']);
+}
+
+navigateclinics(): void {
+  this.activeLink = 'hospitals';
+  this.router.navigate(['hospitals']);
+}
+
+navigatevets(): void {
+  this.activeLink = 'vet-hospital';
+  this.router.navigate(['vet-hospital']);
+}
+
+navigatebloodbanks(): void {
+  this.activeLink = 'Blood-banks';
+  this.router.navigate(['Blood-banks']);
+}
+
+navigatetouroperators(): void {
+  this.activeLink = 'Tour-Operators';
+  this.router.navigate(['Tour-Operators']);
+}
+
+navigatehotels(): void {
+  this.activeLink = 'Hotels';
+  this.router.navigate(['Hotels']);
+}
+
+navigaterestaurants(): void {
+  this.activeLink = 'Restaurants';
+  this.router.navigate(['Restaurants']);
+}
+
+navigatetourguides(): void {
+  this.activeLink = 'Tour Guides';
+  this.router.navigate(['Tour Guides']);
+}
 
 
 signup(): void {

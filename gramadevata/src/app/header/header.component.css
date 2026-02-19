@@ -1,7 +1,7 @@
 /* HEADER */
 .header-bg {
   background: linear-gradient(90deg, #ff6f00, #ff9800, #f9a825);
-  height: 60px;
+  height: 70px;
 }
 
 /* SIDEBAR */
@@ -9,7 +9,7 @@
   position: fixed;
   top: 60px;
   bottom: 0;
-  width: 240px;
+  width: 270px;
   background: #ffffff;
   border-right: 1px solid #eaeaea;
   overflow-y: auto;
@@ -19,7 +19,7 @@
 /* CONTENT AREA */
 .content-area {
   margin-top: 60px;
-  margin-left: 240px;
+  margin-left: 270px;
 }
 
 /* NAV LINKS */

@@ -1,140 +1,16 @@
-            <!-- <li class="nav-item">
-            <a class="nav-link"
-               [ngClass]="{ 'active custom-active-tab': activeLink === 'organizations' }"
-               (click)="navigateorganization()"><b style="color: black;">Organization</b></a>
-          </li> -->
 
 
 
-<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-2" 
-     style="background: linear-gradient(to right, #f44336, #ff6f00, #b18334); z-index: 1;">
-    <div class="container d-flex justify-content-between align-items-center">
-      
-      <h4 class="mb-0 text-brown">Gramadevata_AdminPanel</h4>
-  
-      <div class="d-flex align-items-center gap-4">
-  
-        <ul class="nav  gap-3 mb-0">
-          <li class="nav-item">
-            <a class="nav-link"
-               [ngClass]="{ 'active custom-active-tab': activeLink === 'temples' }"
-               (click)="navigateTotemples()"><b style="color: black;">Temples</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               [ngClass]="{ 'active custom-active-tab': activeLink === 'goshalas' }"
-               (click)="navigategoshala()"><b style="color: black;">Goshalas</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               [ngClass]="{ 'active custom-active-tab': activeLink === 'events' }"
-               (click)="navigateevents()"><b style="color: black;">Events</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               [ngClass]="{ 'active custom-active-tab': activeLink === 'villages' }"
-               (click)="navigatevillages()"><b style="color: black;">Villages</b></a>
-          </li>
 
-
-                      <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle px-3"
-                id="aboutUsDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Add more
-              </a>
-
-              <ul class="dropdown-menu dropdown-menu-start mt-2  shadow dropdown-ui">
-                <li>
-                  <a class="dropdown-item dropdown-link " 
-                    routerLink="/Temple-added-data" (click)="navigateToadd('Temple-added-data')"
-                    (click)="closeNavbar()">
-                    Temples
-                  </a>
-                </li>
-
-                <li><hr class="dropdown-divider my-1"></li>
-
-                <li>
-                  <a class="dropdown-item dropdown-link"
-                    routerLink="/village-added-data" (click)="navigateToadd('village-added-data')"
-                    (click)="closeNavbar()">
-                    Villages
-                  </a>
-                </li>
-                                <li>
-                  <a class="dropdown-item dropdown-link"
-                    routerLink="/event-added-data" (click)="navigateToadd('event-added-data')"
-                    (click)="closeNavbar()">
-                    Events
-                  </a>
-                </li>
-                                <li>
-                  <a class="dropdown-item dropdown-link"
-                    routerLink="/goshala-added-data" (click)="navigateToadd('goshala-added-data')"
-                    (click)="closeNavbar()">
-                    Goshals
-                  </a>
-                </li>
-              </ul>
-            </li>
-        </ul>
-  
-        <ng-container *ngIf="!authenticationService.isLoggedIn; else loggedInBlock">
-          <a class="btn btn-warning text-white"
-             data-bs-dismiss="offcanvas"
-             id="signUp"
-             [ngClass]="getButtonClasses()"
-             (click)="openSignupDialog()">
-            Sign In
-          </a>
-        </ng-container>
-  
-        <ng-template #loggedInBlock>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link d-flex flex-column align-items-center text-center"
-                 href="#"
-                 id="navbarDropdown"
-                 role="button"
-                 data-bs-toggle="dropdown"
-                 aria-expanded="false">
-                <img [src]="user.profile_pic || '../../assests/profile1.png'"
-                     class="rounded-circle"
-                     style="height: 35px; width: 35px; margin-top: -10px;"
-                     alt="Profile image"
-                     (error)="handleProfileImageError($event)">
-                <span class="mt-1">{{user.full_name}}</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                <li>
-                  <a class="dropdown-item" (click)="doLogout()" routerLinkActive="active">Logout</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </ng-template>
-  
-      </div> 
-  
-    </div>
-  </nav> -->
-
-
-
-<nav class="navbar navbar-expand-lg fixed-top shadow-sm header-bg">
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm header-bg bg-dark">
   <div class="container-fluid">
 
-    <button class="btn btn-outline-dark d-lg-none me-2"
+    <button class="btn btn-outline-light d-lg-none me-2"
             data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu">
       ☰
     </button>
-    <span class="navbar-brand fw-bold text-dark">
+    <span class="navbar-brand fw-bold text-white">
       Gramadevata Admin
     </span>
 
@@ -156,7 +32,7 @@
                width="36"
                height="36"
                (error)="handleProfileImageError($event)">
-          <span class="fw-semibold text-dark">
+          <span class="fw-semibold text-white">
             {{ user?.full_name || 'User' }}
           </span>
         </a>
@@ -181,9 +57,9 @@
 
 <nav class="sidebar sidebar-fixed bg-dark" >
   
-  <div class="sidebar-header text-center py-3 border-bottom">
-    <h5 class="fw-bold text-warning mb-0">🛕 Admin Panel</h5>
-    <small class="text-muted">Temple Management</small>
+  <div class="sidebar-header text-center py-3">
+    <!-- <h5 class="fw-bold text-warning mb-0">🛕 Admin Panel</h5>
+    <small class="text-muted">Temple Management</small> -->
   </div>
 
   <ul class="nav flex-column px-3 py-3 gap-1 ">
@@ -252,6 +128,82 @@
       </a>
     </li>
 
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'pooja-stores' }"
+     (click)="navigatepoojastores()">
+    <span class="icon">🛕</span>
+    <span>Pooja Stores</span>
+  </a>
+</li>
+
+
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'hospitals' }"
+     (click)="navigateclinics()">
+    <span class="icon">🏥</span>
+    <span>Clinics/Hospitals</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'vet-hospital' }"
+     (click)="navigatevets()">
+    <span class="icon">🐾</span>
+    <span>VeterinaryHospitals</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'Blood-banks' }"
+     (click)="navigatebloodbanks()">
+    <span class="icon">🩸</span>
+    <span>Blood Banks</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'Tour-Operators' }"
+     (click)="navigatetouroperators()">
+    <span class="icon">✈️</span>
+    <span>Tour Operators</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'Hotels' }"
+     (click)="navigatehotels()">
+    <span class="icon">🏨</span>
+    <span>Hotels</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'Restaurants' }"
+     (click)="navigaterestaurants()">
+    <span class="icon">🍽️</span>
+    <span>Restaurants</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link d-flex align-items-center gap-3 text-white"
+     [ngClass]="{ 'active': activeLink === 'Tour Guides' }"
+     (click)="navigatetourguides()">
+    <span class="icon">🧑‍💼</span>
+    <span>Tour Guides</span>
+  </a>
+</li>
+
+    
     <li class="my-3">
       <hr>
     </li>
