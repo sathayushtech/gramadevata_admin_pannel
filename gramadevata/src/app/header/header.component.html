@@ -10,8 +10,15 @@
             data-bs-target="#sidebarMenu">
       ☰
     </button>
+          <!-- <img
+        src="../../assets/Screenshot 2024-08-07 105609.png"
+        class="rounded-circle mb-3"
+        width="80"
+        height="80"
+        alt="Logo"
+      /> -->
     <span class="navbar-brand fw-bold text-white">
-      Gramadevata Admin
+      Gramadevata Admin Panel
     </span>
 
     <ul class="navbar-nav ms-auto align-items-center">
@@ -33,7 +40,7 @@
                height="36"
                (error)="handleProfileImageError($event)">
           <span class="fw-semibold text-white">
-            {{ user?.full_name || 'User' }}
+            {{ user?.full_name }}
           </span>
         </a>
 

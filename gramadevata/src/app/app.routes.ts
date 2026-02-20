@@ -52,18 +52,18 @@ export const routes: Routes = [
     {path:'event-added-data',component:EventAddMoreDataComponent},
     {path:'goshala-added-data',component:GoshalaAddMoreDataComponent},
     {path:'dashboard',component:DashboardComponent,canActivate: [authGuard]},
-    {path:"Tourism",component:TourismComponent},
-    {path:"Welfare home",component:WelfareHomesComponent},
-    {path:"Add Tourism",component:AddTourismComponent},
+    {path:"Tourism",component:TourismComponent,canActivate: [authGuard]},
+    {path:"Welfare home",component:WelfareHomesComponent,canActivate: [authGuard]},
+    {path:"Add Tourism",component:AddTourismComponent,canActivate: [authGuard]},
 
-    {path:'Tour-Operators',component:TourOperatorsComponent},
-    {path:'Hotels',component:HotelsComponent},
-    {path:'Restaurants',component:RestaurantsComponent},
-    {path:'Tour Guides',component:TourGuidesComponent},
-    {path:'hospitals',component:HospitalsComponent},
-    {path:'vet-hospital',component:VetHospitalsComponent},
-    {path:'pooja-stores',component:PoojastoresComponent},
-    {path:'Blood-banks',component:BloodBanksComponent}
+    {path:'Tour-Operators',component:TourOperatorsComponent,canActivate: [authGuard]},
+    {path:'Hotels',component:HotelsComponent,canActivate: [authGuard]},
+    {path:'Restaurants',component:RestaurantsComponent,canActivate: [authGuard]},
+    {path:'Tour Guides',component:TourGuidesComponent,canActivate: [authGuard]},
+    {path:'hospitals',component:HospitalsComponent,canActivate: [authGuard]},
+    {path:'vet-hospital',component:VetHospitalsComponent,canActivate: [authGuard]},
+    {path:'pooja-stores',component:PoojastoresComponent,canActivate: [authGuard]},
+    {path:'Blood-banks',component:BloodBanksComponent,canActivate: [authGuard]}
 
     
 
