@@ -272,4 +272,7 @@ profiledata(){
   }
 }
 
+
+isSidebarOpen = false;
+
 }
