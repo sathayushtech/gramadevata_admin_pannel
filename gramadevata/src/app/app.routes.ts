@@ -31,6 +31,8 @@ import { HospitalsComponent } from './hospitals/hospitals.component';
 import { VetHospitalsComponent } from './vet-hospitals/vet-hospitals.component';
 import { PoojastoresComponent } from './poojastores/poojastores.component';
 import { BloodBanksComponent } from './blood-banks/blood-banks.component';
+import { SignupComponent } from './signup/signup.component';
+import { VerifyComponent } from './verify/verify.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
@@ -63,7 +65,9 @@ export const routes: Routes = [
     {path:'hospitals',component:HospitalsComponent,canActivate: [authGuard]},
     {path:'vet-hospital',component:VetHospitalsComponent,canActivate: [authGuard]},
     {path:'pooja-stores',component:PoojastoresComponent,canActivate: [authGuard]},
-    {path:'Blood-banks',component:BloodBanksComponent,canActivate: [authGuard]}
+    {path:'Blood-banks',component:BloodBanksComponent,canActivate: [authGuard]},
+    // {path:'Signup',component:SignupComponent,canActivate: [authGuard]},
+    // {path:'Verify',component:VerifyComponent,canActivate: [authGuard]},
 
     
 

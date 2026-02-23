@@ -36,8 +36,24 @@ export class HeaderComponent {
     this.loadUser();
     // this.profiledata();
     this.getUserProfile();
+
+
+      this.activeLink = localStorage.getItem('activeLink') || '';
+
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      const currentRoute = this.sidebarLinks.find(link => link.link === event.urlAfterRedirects);
+      if (currentRoute) {
+        this.activeLink = currentRoute.name;
+        localStorage.setItem('activeLink', this.activeLink);
+      }
+    }
+  });
     
   }
+
+
+  
 
   setProfileImage(): void {
     if (this.user && this.user.profile_pic) {
@@ -230,6 +246,7 @@ navigateTo(): void {
   } else {
     // this.userservice.showMemberModal();
   }
+  
 }
 
 
