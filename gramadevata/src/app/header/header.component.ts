@@ -5,10 +5,12 @@ import { SignupComponent } from '../signup/signup.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
+import { RouterModule } from '@angular/router'; // <-- add this
+
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -274,5 +276,38 @@ profiledata(){
 
 
 isSidebarOpen = false;
+
+sidebarLinks = [
+  { name: 'dashboard', label: 'Dashboard', icon: '🏠', link: '/dashboard' },
+  { name: 'temples', label: 'Temples', icon: '🛕', link: '/temples' },
+  { name: 'goshalas', label: 'Goshalas', icon: '🐄', link: '/goshalas' },
+  { name: 'events', label: 'Events', icon: '📅', link: '/events' },
+  { name: 'villages', label: 'Villages', icon: '🏘', link: '/villages' },
+  { name: 'tourism', label: 'Tourism', icon: '🌄', link: '/Tourism' },
+  { name: 'welfare', label: 'Welfare Home', icon: '🏠', link: '/Welfare home' },
+  { name: 'pooja-stores', label: 'Pooja Stores', icon: '🛕', link: '/pooja-stores' },
+  { name: 'hospitals', label: 'Clinics/Hospitals', icon: '🏥', link: '/hospitals' },
+  { name: 'vet-hospital', label: 'VeterinaryHospitals', icon: '🐾', link: '/vet-hospital' },
+  { name: 'blood-banks', label: 'Blood Banks', icon: '🩸', link: '/Blood-banks' },
+  { name: 'tour-operators', label: 'Tour Operators', icon: '✈️', link: '/Tour-Operators' },
+  { name: 'hotels', label: 'Hotels', icon: '🏨', link: '/Hotels' },
+  { name: 'restaurants', label: 'Restaurants', icon: '🍽️', link: '/Restaurants' },
+  { name: 'tour-guides', label: 'Tour Guides', icon: '🧑‍💼', link: '/Tour Guides' },
+];
+
+// activeLink = 'dashboard';
+
+navigate(linkName: string) {
+  this.activeLink = linkName;
+  // add your navigation logic here
+}
+
+closeSidebar() {
+  const offcanvasEl = document.getElementById('offcanvasSidebar');
+  if (offcanvasEl) {
+    const bsOffcanvas = (window as any).bootstrap.Offcanvas.getInstance(offcanvasEl);
+    bsOffcanvas?.hide();
+  }
+}
 
 }
