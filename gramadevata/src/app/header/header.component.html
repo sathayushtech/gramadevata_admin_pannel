@@ -1,4 +1,4 @@
-
+<!-- 
 
 
 
@@ -230,4 +230,136 @@
 
 
   </div>
+</div> -->
+
+
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm header-bg">
+  <div class="container-fluid">
+
+    <button class="btn btn-outline-light d-lg-none me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasSidebar"
+            aria-controls="offcanvasSidebar">
+      ☰
+    </button>
+
+    <span class="navbar-brand fw-bold text-white">
+      Gramadevata Admin Panel
+    </span>
+
+    <ul class="navbar-nav ms-auto align-items-center">
+      <li class="nav-item" *ngIf="!authenticationService.isLoggedIn">
+        <button class="btn btn-warning text-white rounded-pill"
+                (click)="openSignupDialog()">
+          Sign In
+        </button>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="authenticationService.isLoggedIn">
+        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+           role="button"
+           data-bs-toggle="dropdown">
+          <img [src]="profileImageUrl"
+               class="rounded-circle"
+               width="36"
+               height="36"
+               (error)="handleProfileImageError($event)">
+          <span class="fw-semibold text-white">
+            {{ user?.full_name }}
+          </span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li>
+            <a class="dropdown-item text-danger" (click)="doLogout()">
+              🚪 Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="sidebar-fixed d-none d-lg-block">
+  <ul class="nav flex-column px-3 py-3 gap-1">
+    <li class="nav-item" *ngFor="let item of sidebarLinks">
+      <a class="nav-link d-flex align-items-center gap-3 text-white"
+         [routerLink]="item.link"
+         [ngClass]="{ 'active': activeLink === item.name }"
+         (click)="navigate(item.name)">
+        <span class="icon">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
+      </a>
+    </li>
+      <li class="nav-item mt-3">
+    <div class="dropdown">
+      <a class="nav-link d-flex align-items-center gap-3 dropdown-toggle text-white"
+         data-bs-toggle="dropdown" role="button">
+        <span class="icon">➕</span>
+        <span>Add More New Info</span>
+      </a>
+      <ul class="dropdown-menu w-100 shadow-sm">
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('Temple-added-data')">🛕 Temple</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('village-added-data')">🏘 Village</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('event-added-data')">📅 Event</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('goshala-added-data')">🐄 Goshala</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+  </ul>
+</div>
+
+<div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="offcanvasSidebar">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <ul class="nav flex-column px-3 py-3 gap-1">
+      <li class="nav-item" *ngFor="let item of sidebarLinks">
+        <a class="nav-link d-flex align-items-center gap-3 text-dark"
+           [routerLink]="item.link"
+           (click)="navigate(item.name); closeSidebar()">
+          <span class="icon">{{ item.icon }}</span>
+          <span>{{ item.label }}</span>
+        </a>
+      </li>
+  <li class="nav-item mt-3">
+    <div class="dropdown">
+      <a class="nav-link d-flex align-items-center gap-3 dropdown-toggle text-dark"
+         data-bs-toggle="dropdown" role="button">
+        <span class="icon">➕</span>
+        <span>Add More New Info</span>
+      </a>
+      <ul class="dropdown-menu w-100 shadow-sm">
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('Temple-added-data'); closeSidebar()">🛕 Temple</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('village-added-data'); closeSidebar()">🏘 Village</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('event-added-data'); closeSidebar()">📅 Event</a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="navigateToadd('goshala-added-data'); closeSidebar()">🐄 Goshala</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+    </ul>
+  </div>
+</div>
+
+<div class="content-area">
 </div>
