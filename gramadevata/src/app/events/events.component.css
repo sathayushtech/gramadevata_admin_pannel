@@ -1,53 +1,48 @@
-.section-heading {
-  font-weight: 600;
-  font-size: 16px;
+.main-card {
+  background: #fffaf2;
 }
 
-.event-scroll {
-  max-height: 680px;
-}
-
-.event-btn {
-  padding: 12px 15px;
-  border-radius: 14px;
-  border: 1px solid #eee;
+.event-item {
+  cursor: pointer;
   background: #ffffff;
+  border: 1px solid #eee;
   transition: all 0.3s ease;
-  text-align: left;
 }
 
-.event-btn:hover {
-  background: #f8f9fa;
-  transform: translateX(4px);
+.event-item:hover {
+  background: #fff3e0;
+  transform: translateY(-2px);
 }
 
-.event-img {
-  object-fit: cover;
-  border: 2px solid #f1f1f1;
-}
-
-.event-name {
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.event-time {
-  font-size: 12px;
-  color: #888;
-}
-
-/* 🔥 Selected Event */
-.selected-event {
-  background: linear-gradient(135deg, #ff7a18, #ffb347);
-  color: #fff;
+.active-event {
+  background: linear-gradient(135deg, #ffb347, #ffd54f);
+  color: #000;
   border: none;
-  box-shadow: 0 6px 18px rgba(255, 122, 24, 0.3);
 }
 
-.selected-event .event-time {
-  color: rgba(255, 255, 255, 0.85);
+.admin-header {
+  background: linear-gradient(135deg, #ffb347, #ffd54f);
+  padding: 18px 22px;
+  border-radius: 20px 20px 0 0;
 }
 
-.selected-event img {
-  border: 2px solid #ffffff;
+.admin-title {
+  font-weight: 600;
+  color: #4e342e;
+}
+
+.btn-add {
+  background-color: #ffffff;
+  color: #e65100;
+  font-weight: 500;
+  border-radius: 30px;
+  padding: 8px 18px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.btn-add:hover {
+  background-color: #fff3e0;
+  transform: translateY(-2px);
 }

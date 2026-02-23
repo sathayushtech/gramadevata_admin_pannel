@@ -21,21 +21,52 @@ export class EventsComponent {
     this.getinactivevents();
   }
 
-      getinactivevents(){
-      this.eventservice.GetallinactiveEvents().subscribe(
-        (data) => {
+      // getinactivevents(){
+      // this.eventservice.GetallinactiveEvents().subscribe(
+      //   (data) => {
 
-          console.log("Events fetched:", data);
+      //     console.log("Events fetched:", data);
           
-          this.events = data.event_completed;
-          this.upcomingevents = data.event_upcoming;
-          this.ongoingevents = data.event_ongoing;
-        },
-        (error) => {
-          console.error("Error fetching events:", error);
-        }
-      );
-      }
+      //     this.events = data.event_completed;
+      //     this.upcomingevents = data.event_upcoming;
+      //     this.ongoingevents = data.event_ongoing;
+      //   },
+      //   (error) => {
+      //     console.error("Error fetching events:", error);
+      //   }
+      // );
+      // }
+
+
+      allEvents: any[] = [];
+
+getinactivevents() {
+  this.eventservice.GetallinactiveEvents().subscribe(
+    (data) => {
+
+      const past = (data.event_completed || []).map((e: any) => ({
+        ...e,
+        status: 'Past'
+      }));
+
+      const upcoming = (data.event_upcoming || []).map((e: any) => ({
+        ...e,
+        status: 'Upcoming'
+      }));
+
+      const ongoing = (data.event_ongoing || []).map((e: any) => ({
+        ...e,
+        status: 'Ongoing'
+      }));
+
+      this.allEvents = [...ongoing, ...upcoming, ...past];
+
+    },
+    (error) => {
+      console.error("Error fetching events:", error);
+    }
+  );
+}
 
 
 

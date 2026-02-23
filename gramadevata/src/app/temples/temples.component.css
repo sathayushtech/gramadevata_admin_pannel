@@ -1,199 +1,152 @@
-.hide-scrollbar {
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
-  }
-  
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;  
-  }
-
-  .temple-btn {
-  border-radius: 30px;
-  padding: 10px 14px;
-  border: 1px solid #eee;
-  background: #f9f9f9;
-  transition: all 0.3s ease;
+/* ===============================
+   GLOBAL WRAPPER
+================================ */
+.admin-wrapper {
+  background: #f4f6fb;
+  padding: 25px;
+  min-height: 100vh;
 }
 
-.temple-btn:hover {
-  background: #ffe8cc;
+.admin-header {
+  background: #ffffff;
+  padding: 20px 25px;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
 }
 
-.temple-btn.active {
-  background: #ff9800;
-  color: #000;
+.admin-title {
+  font-weight: 700;
+}
+
+/* ===============================
+   PANELS
+================================ */
+.panel-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  height: 100%;
+}
+
+.panel-title {
   font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.card {
-  border-radius: 16px;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-/* =========================
-   GLOBAL ADMIN LOOK
-========================= */
-.admin-bg {
-  background: #f6f8fc;
-}
-
-/* Remove ugly scrollbars */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  scrollbar-width: none;
-}
-
-/* =========================
-   FILTER CARD
-========================= */
-.card {
-  border-radius: 14px;
-  border: none;
-}
-
-.card-header {
-  background: #ffffff;
-  border-bottom: 1px solid #eef1f6;
-}
-
-.card-body {
-  background: #ffffff;
-}
-
-.nz-select {
-  width: 100%;
-}
-
-/* Clear (×) buttons */
-.clear-btn {
-  position: absolute;
-  top: 9px;
-  right: 12px;
-  background: #eee;
-  border-radius: 50%;
-  border: none;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-  cursor: pointer;
-  line-height: 1;
-}
-
-/* =========================
-   LEFT TEMPLE LIST
-========================= */
-.temple-scroll {
-  max-height: calc(100vh - 260px);
+/* ===============================
+   TEMPLE LIST
+================================ */
+.temple-list-scroll {
+  max-height: 65vh;
   overflow-y: auto;
 }
 
-.temple-list-btn {
-  width: 100%;
-  border: none;
-  background: #f8f9ff;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 8px;
+.temple-item {
   display: flex;
   align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.temple-item:hover {
+  background: #fff3e6;
+}
+
+.active-temple {
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  color: #fff;
+}
+
+.temple-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.temple-name {
+  font-weight: 600;
+}
+
+/* ===============================
+   DETAILS
+================================ */
+.details-image {
+  width: 100%;
+  border-radius: 14px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 10px;
   font-size: 14px;
-  transition: all 0.25s ease;
-  text-align: left;
 }
 
-.temple-list-btn:hover {
-  background: #ffe6c7;
-}
-
-.temple-list-btn.active {
-  background: linear-gradient(135deg, #ff9800, #ffb74d);
-  color: #000;
-  font-weight: 600;
-}
-
-.temple-thumb {
-  width: 36px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
-
-/* =========================
-   CENTER DETAILS PANEL
-========================= */
-.img-fluid {
-  max-height: 280px;
-  object-fit: cover;
-  width: 100%;
-}
-
-.list-group-item {
-  font-size: 14px;
-  padding: 8px 12px;
-  background: transparent;
-}
-
-/* Empty state */
+/* ===============================
+   EMPTY STATE
+================================ */
 .empty-state {
-  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 350px;
+  text-align: center;
   color: #9aa0b4;
-  font-size: 16px;
 }
 
-/* =========================
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* ===============================
    BUTTONS
-========================= */
-.btn-warning {
-  background: linear-gradient(135deg, #ff9800, #ffb74d);
+================================ */
+.btn-add {
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
   border: none;
-  color: #000;
+  padding: 8px 18px;
+  border-radius: 30px;
   font-weight: 600;
+  color: #000;
 }
 
-.btn-warning:hover {
+.btn-add:hover {
   opacity: 0.9;
 }
 
-/* =========================
-   RESPONSIVE FIXES
-========================= */
+.btn-edit {
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
 @media (max-width: 992px) {
-  .temple-scroll {
+  .temple-list-scroll {
     max-height: 300px;
   }
 }
 
 @media (max-width: 576px) {
-  .card {
-    border-radius: 10px;
+  .admin-wrapper {
+    padding: 15px;
   }
 
-  .temple-list-btn {
-    font-size: 13px;
-    padding: 8px;
+  .panel-card {
+    padding: 15px;
   }
-}
-.temple-btn {
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #fff;
-  transition: 0.3s;
-  text-align: left;
-}
-
-/* Only Selected One */
-.selected-temple {
-  background: linear-gradient(135deg, #ff7a18, #ffb347);
-  color: #fff;
-  border: none;
 }
