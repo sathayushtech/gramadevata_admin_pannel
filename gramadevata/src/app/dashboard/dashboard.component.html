@@ -7,21 +7,17 @@
   </div>
 
   <!-- STAT CARDS -->
-  <div class="stats-container">
-    <div class="stat-card"
-         *ngFor="let card of [
-           {label:'Total', value:userCount?.total},
-           {label:'Members', value:userCount?.members},
-           {label:'Non Members', value:userCount?.non_members},
-           {label:'Active', value:userCount?.active},
-           {label:'Inactive', value:userCount?.inactive}
-         ]">
+<div class="stats-container">
+  <div class="stat-card"
+       *ngFor="let card of cards"
+       (click)="card.type ? usersactiveorinactive(card.type) : null"
+       [class.active-card]="currentFilter === card.type">
 
-      <div class="stat-value">{{ card.value || 0 }}</div>
-      <div class="stat-label">{{ card.label }}</div>
+    <div class="stat-value">{{ card.value || 0 }}</div>
+    <div class="stat-label">{{ card.label }}</div>
 
-    </div>
   </div>
+</div>
 
 
 
@@ -39,31 +35,83 @@
   <!-- MAIN CONTENT -->
   <div class="dashboard-content">
 
-    <!-- USER LIST -->
-    <div class="user-list">
+    <!-- <div class="user-list">
 
-      <div class="user-card"
-           *ngFor="let u of users"
-           (click)="viewProfile(u)"
-           [class.selected]="selectedUser?.id === u.id">
+<div class="user-card"
+     *ngFor="let u of users"
+     (click)="viewProfile(u)"
+     [class.selected]="selectedUser?.id === u.id">
 
-        <img [src]="u.profile_pic || 'assets/profile1.webp'">
+  <img [src]="u.profile_pic || 'assets/profile1.webp'">
 
-        <div class="user-info">
-          <h6>{{ u.full_name || 'Unnamed User' }}</h6>
+  <div class="user-info">
+    <h6>{{ u.full_name || 'Unnamed User' }}</h6>
 
-          <span class="badge"
-                [ngClass]="u.is_member === 'true' ? 'member' : 'non-member'">
-            {{ u.is_member === 'true' ? 'Member' : 'Non Member' }}
-          </span>
+    <span class="badge"
+          [ngClass]="u.is_member === 'true' ? 'member' : 'non-member'">
+      {{ u.is_member === 'true' ? 'Member' : 'Non Member' }}
+    </span>
 
-          <p>{{ u.email }}</p>
+    <p class="mb-1">{{ u.email }}</p>
+
+<div class="d-flex justify-content-end align-items-center gap-5 small text-muted">
+
+  <span>{{ u.contact_number || '—' }}</span>
+
+
+  <span>{{ u.relative_time || '—' }}</span>
+
+</div>
+
+  </div>
+
+</div>
+
+    </div> -->
+<div class="user-list">
+
+  <div class="user-card"
+       *ngFor="let u of users"
+       (click)="viewProfile(u)"
+       [class.selected]="selectedUser?.id === u.id">
+
+    <!-- Profile Image -->
+    <div class="avatar">
+      <img [src]="u.profile_pic || 'assets/profile1.webp'">
+    </div>
+
+    <!-- User Info -->
+    <div class="user-info">
+
+      <!-- Top Section -->
+      <div class="top-row">
+        <h6>{{ u.full_name || 'Unnamed User' }}</h6>
+
+        <span class="badge"
+              [ngClass]="u.is_member === 'true' ? 'member' : 'non-member'">
+          {{ u.is_member === 'true' ? 'Member' : 'Non Member' }}
+        </span>
+      </div>
+
+      <!-- Email -->
+      <p class="email">📧 {{ u.email || '—'}}</p>
+
+      <!-- Bottom Section -->
+      <div class="bottom-row">
+        <div class="contact">
+          📞 {{ u.contact_number || '—' }}
         </div>
 
+        <div class="time">
+          ⏱ {{ u.relative_time || '—' }}
+        </div>
       </div>
 
     </div>
 
+  </div>
+
+</div>
     <div class="profile-panel">
 
       <div *ngIf="selectedUser; else noUser" class="modern-profile">

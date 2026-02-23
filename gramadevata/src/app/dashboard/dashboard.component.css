@@ -321,3 +321,82 @@
   }
 }
 
+.user-info .small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+
+
+
+.user-card {
+  display: flex;
+  gap: 15px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.user-card.selected {
+  border: 2px solid #4f46e5;
+}
+
+.avatar img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-row h6 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.email {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #777;
+}
+
+.badge {
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 20px;
+}
+
+.member {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.non-member {
+  background: #fee2e2;
+  color: #dc2626;
+}
