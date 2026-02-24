@@ -1,165 +1,211 @@
-<div class="container-fluid my-4 p-4 border rounded " style="min-height: 100vh; display: flex; flex-direction: column;">
-  <!-- <h4 class="mt-5"></h4> -->
-    <div class="row">
-  
-      <!-- <div class="col-md-6 border-end d-flex flex-column">
-       
+<div class="admin-wrapper">
 
-        <h5 class="d-flex justify-content-between align-items-center">
-        <span>Villages</span>
-        <button (click)="addVillage()"
-                class="btn btn-sm"
-                style="border: 1px solid rgb(238, 141, 51); background-color: rgb(238, 141, 51); border-radius: 20px; color: black; font-size: 14px;">
-          Add Village
-        </button>
-      </h5>
-        <hr>
-        <div class="overflow-auto" style="max-height: 680px;">
-          <ul class="list-unstyled">
-            <li *ngFor="let village of villages" class="mb-2">
-              <button class="btn w-100 d-flex align-items-center"
-              [ngClass]="{
-                'btn-outline-primary': selectedVillage !== village,
-                'btn-primary': selectedVillage === village
-              }"
-                (click)="navigateToVillage(village)"
-              >
-                <img
-                  [src]="village.image_location"
-                  alt="temple logo"
-                  width="30"
-                  height="30"
-                  class="me-2 rounded-circle"
-                />
-                {{ village.name }}
-              </button>
-            </li>
-            <ng-template #noEvents>
-              <div class="alert alert-info" role="alert">
-                No inactive events found.
-              </div>
-            </ng-template>
-          </ul>
-      </div>
-     
-        
-      </div> -->
-  
-  
-
-      <div class="col-md-4 border-end d-flex flex-column">
-
-  <h5 class="d-flex justify-content-between align-items-center">
-    <span>Villages</span>
-    <button (click)="addVillage()"
-            class="btn btn-sm"
-            style="border: 1px solid rgb(238, 141, 51); background-color: rgb(238, 141, 51); border-radius: 20px; color: black; font-size: 14px;">
-      Add Village
-    </button>
-  </h5>
-  <hr>
-
-  <!-- <div class="overflow-auto" style="max-height: 680px;">
-    <ul class="list-unstyled">
-
-      <ng-container *ngIf="villages?.length > 0; else noDataFound">
-        <li *ngFor="let village of villages" class="mb-2">
-          <button class="btn w-100 d-flex align-items-center"
-                  [ngClass]="{
-                    'btn-outline-primary': selectedVillage !== village,
-                    'btn-primary': selectedVillage === village
-                  }"
-                  (click)="navigateToVillage(village)">
-            <img
-              [src]="village.image_location"
-              alt="temple logo"
-              width="30"
-              height="30"
-              class="me-2 rounded-circle"
-            />
-            {{ village.name }}
-          </button>
-        </li>
-      </ng-container>
-
-      <ng-template #noDataFound>
-        <div class="alert alert-warning text-center" role="alert">
-          No villages found.
-        </div>
-      </ng-template>
-
-    </ul>
-  </div> -->
-<div class="overflow-auto flex-grow-1" style="max-height: calc(100vh - 270px);">
-  <ul class="list-unstyled">
-    <li *ngFor="let village of villages" class="mb-2">
-
-<button
-  class="temple-btn w-100 d-flex align-items-center"
-  [ngClass]="{ 'selected-temple': selectedVillage?._id === village._id }"
-  (click)="navigateToVillage(village)"
->
-
-
-        <div class="d-flex align-items-center">
-          <img
-            [src]="village.image_location[0] ? village.image_location[0] : 'assets/ohm.jpg'"
-            width="40"
-            height="40"
-            class="me-3 rounded-circle temple-img"
-            
-          />
-
-          <div class="text-start">
-            <div class="fw-semibold temple-name">
-              {{ village.name }}
-            </div>
-            <small class="text-muted">
-              {{ village.relative_time || '—' }}
-            </small>
-          </div>
-        </div>
-
-      </button>
-
-    </li>
-  </ul>
-</div>
-</div>
-
-     
-  
-      <div class="col-md-8 border-end d-flex flex-column">
-        <div class="overflow-auto" style="max-height: 780px;">
-            <div class="mt-4 d-flex justify-content-center" *ngIf="selectedVillage">
-                <div class="card" style="width: 100%; max-width: 400px;">
-                  <img [src]="selectedVillage.image_location" class="card-img-top mx-auto d-block mt-3" alt="{{ selectedVillage.name }}" style="height: 300px; width: 300px; object-fit: cover;">
-                  <div class="card-body text-center">
-                     <p style="text-align: end;"><strong>Relative Time:</strong> {{ selectedVillage.relative_time }}</p>
-              <p style="text-align: end;"><strong>Added By:</strong> {{ selectedVillage.user_full_name }}</p>
-            
-                    <h5 class="card-title">{{ selectedVillage.name }}</h5>
-                    <p><strong>District:</strong> {{ selectedVillage.district }}</p>
-                    <p><strong>State:</strong> {{ selectedVillage.state }}</p>
-                    <p><strong>Country:</strong> {{ selectedVillage.country }}</p>
-                    <p><strong>Map Location:</strong> {{ selectedVillage.mapUrl }}</p>
-                    <p><strong>Pin Code:</strong> {{ selectedVillage.pin_code }}</p>
-                    <p><strong>Description:</strong> {{ selectedVillage.desc }}</p>
-
-                    <div class="row" style="justify-content: center;">
-                        <button (click)="navigateToVilage(selectedVillage._id)" class="p-2 m-2 mr-5" style="border-width: 1px;background-color:rgb(238, 141, 51);border-radius: 25px;color:black;width:100px;height: 45px;font-size:18px;">
-                            <i class=""></i>
-                            Edit
-                        </button>
-                        
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-        </div>
-      </div>
-
-  
+  <!-- Top Header -->
+  <div class="admin-header">
+    <div class="logo-circle">ॐ</div>
+    <div>
+      <h2>Village Admin</h2>
+      <p>Manage villages, details & locations</p>
     </div>
   </div>
+
+  <!-- Main Container -->
+  <div class="admin-container">
+
+    <div class="row g-0 h-100">
+
+      <!-- LEFT PANEL -->
+      <div class="col-lg-4 left-panel">
+
+        <h3 class="section-title">Villages</h3>
+        <hr>
+
+        <div class="village-scroll">
+
+          <div *ngFor="let village of villages"
+               class="village-card"
+               [ngClass]="{'active-card': selectedVillage?._id === village._id}"
+               (click)="navigateToVillage(village)">
+
+            <img [src]="village.image_location[0] ? village.image_location[0] : 'assets/ohm.jpg'"
+                 class="village-img">
+
+            <div>
+              <div class="village-name">{{ village.name }}</div>
+              <small class="village-time">
+                ⏱ {{ village.relative_time }}
+              </small>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+<!-- RIGHT PANEL -->
+<div class="col-lg-8 col-12">
+
+  <div class="card shadow-lg border-0 rounded-4 h-100">
+
+    <!-- Header -->
+    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center p-4">
+
+      <div>
+        <h4 class="fw-bold mb-0">Village Details</h4>
+        <small class="text-muted">View and manage village information</small>
+      </div>
+
+      <button (click)="addVillage()" 
+              class="btn btn-warning rounded-pill px-4 fw-semibold">
+        + Add Village
+      </button>
+
+    </div>
+
+    <hr class="m-0">
+
+<div class="card-body p-4">
+
+  <div *ngIf="selectedVillage; else emptyState">
+
+    <!-- Image -->
+    <div class="mb-4 text-center">
+      <img [src]="selectedVillage.image_location?.length 
+                  ? selectedVillage.image_location[0] 
+                  : 'assets/ohm.jpg'"
+           class="img-fluid rounded-4 shadow-sm details-image">
+    </div>
+
+    <!-- Title & Meta -->
+    <div class="text-center mb-4">
+      <h3 class="fw-bold text-capitalize">
+        {{ selectedVillage.name }}
+      </h3>
+      <small class="text-muted">
+        Added by 
+        {{ selectedVillage.user_full_name || selectedVillage.user }} 
+        • {{ selectedVillage.relative_time }}
+      </small>
+    </div>
+
+    <!-- Basic Info Grid -->
+    <div class="row g-4 mb-4">
+
+      <div class="col-md-6">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">Pin Code</small>
+          <h6 class="fw-semibold mb-0">
+            {{ selectedVillage.pin_code }}
+          </h6>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">Status</small>
+          <h6 class="fw-semibold mb-0">
+            <span class="badge bg-secondary">
+              {{ selectedVillage.status }}
+            </span>
+          </h6>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">Type</small>
+          <h6 class="fw-semibold mb-0">
+            {{ selectedVillage.type }}
+          </h6>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">Block ID</small>
+          <h6 class="fw-semibold mb-0">
+            {{ selectedVillage.block }}
+          </h6>
+        </div>
+      </div>
+
+      <div class="col-md-6" *ngIf="selectedVillage.old_village_code">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">Old Village Code</small>
+          <h6 class="fw-semibold mb-0">
+            {{ selectedVillage.old_village_code }}
+          </h6>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">Created At</small>
+          <h6 class="fw-semibold mb-0">
+            {{ selectedVillage.created_at | date:'medium' }}
+          </h6>
+        </div>
+      </div>
+
+            <div class="col-md-6">
+        <div class="info-card p-3 rounded-4 shadow-sm">
+          <small class="text-muted">User Id</small>
+          <h6 class=" mb-0" style="font-size: 15px;">
+            {{ selectedVillage.user }}
+          </h6>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Description -->
+    <div class="card bg-light border-0 rounded-4 p-4 mb-4">
+      <h6 class="fw-bold mb-2">Description</h6>
+      <p class="text-muted mb-0">
+        {{ selectedVillage.desc }}
+      </p>
+    </div>
+
+    <!-- Map URL -->
+    <div *ngIf="selectedVillage.mapUrl" class="mb-3">
+      <a [href]="selectedVillage.mapUrl"
+         target="_blank"
+         class="btn btn-outline-primary rounded-pill px-4">
+        View Location on Map
+      </a>
+    </div>
+
+    <!-- Village Video -->
+    <div *ngIf="selectedVillage.village_video && selectedVillage.village_video !== 'null'"
+         class="mb-4">
+      <video width="100%" controls class="rounded-4 shadow-sm">
+        <source [src]="selectedVillage.village_video" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Edit Button -->
+    <div class="text-end">
+      <button (click)="navigateToVilage(selectedVillage._id)"
+              class="btn btn-outline-dark rounded-pill px-4">
+        Edit Village
+      </button>
+    </div>
+
+  </div>
+
+  <!-- EMPTY STATE -->
+  <ng-template #emptyState>
+    <div class="d-flex flex-column align-items-center justify-content-center text-center"
+         style="height: 350px;">
+      <div class="display-4 mb-3">📍</div>
+      <h5 class="text-muted">Select a village to view details</h5>
+    </div>
+  </ng-template>
+
+</div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>

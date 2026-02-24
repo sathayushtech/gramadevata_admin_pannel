@@ -1,131 +1,198 @@
 /* ===============================
-   GLOBAL WRAPPER
-================================ */
-.admin-wrapper {
-  background: #f4f6fb;
-  padding: 25px;
-  min-height: 100vh;
+   GLOBAL FIX
+================================= */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* prevents outer scroll */
+  font-family: 'Poppins', sans-serif;
 }
 
+/* ===============================
+   WRAPPER
+================================= */
+.admin-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8f9fa, #eef2f7);
+  box-sizing: border-box;
+}
+
+/* ===============================
+   HEADER
+================================= */
 .admin-header {
-  background: #ffffff;
-  padding: 20px 25px;
-  border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.admin-title {
-  font-weight: 700;
+/* ===============================
+   WHITE CONTAINER
+================================= */
+.admin-container {
+  flex: 1;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  padding: 20px;
+  overflow: hidden;  /* prevents overflow outside */
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===============================
-   PANEL CARD
-================================ */
-.panel-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-  height: 100%;
+   INNER LAYOUT
+================================= */
+.admin-row {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
 }
 
-.panel-title {
-  font-weight: 600;
+/* ===============================
+   LEFT PANEL
+================================= */
+.left-panel {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #eee;
+  padding-right: 15px;
+  overflow: hidden;
+}
+
+.panel-header {
   margin-bottom: 15px;
 }
 
-/* ===============================
-   GOSHALA LIST
-================================ */
 .goshala-scroll {
-  max-height: 65vh;
+  flex: 1;
   overflow-y: auto;
 }
 
+/* ===============================
+   RIGHT PANEL
+================================= */
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.details-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.details-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.details-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 20px;
+}
+
+/* ===============================
+   SCROLLBAR
+================================= */
+.goshala-scroll::-webkit-scrollbar,
+.details-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.goshala-scroll::-webkit-scrollbar-thumb,
+.details-body::-webkit-scrollbar-thumb {
+  background: #ffb347;
+  border-radius: 10px;
+}
+
+/* ===============================
+   CARDS & ITEMS
+================================= */
 .goshala-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px;
-  border-radius: 12px;
+  gap: 15px;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  background: #fafafa;
+  transition: 0.3s ease;
 }
 
 .goshala-item:hover {
-  background: #fff3e6;
+  transform: translateY(-3px);
+  background: #fff4e8;
 }
 
 .active-goshala {
-  background: linear-gradient(135deg, #ff7a18, #ffb347);
-  color: #fff;
+  border: 2px solid #ff7a18;
+  background: #fff3e6;
 }
 
 .goshala-avatar {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.goshala-name {
-  font-weight: 600;
-}
-
-/* ===============================
-   DETAILS
-================================ */
 .details-image {
   width: 100%;
-  border-radius: 14px;
-  max-height: 300px;
+  max-height: 250px;
   object-fit: cover;
+  border-radius: 18px;
 }
 
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.details-grid div {
+  background: #f9fafc;
+  padding: 10px;
+  border-radius: 10px;
   font-size: 14px;
 }
 
-/* ===============================
-   EMPTY STATE
-================================ */
-.empty-state {
-  height: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #9aa0b4;
-}
-
-.empty-icon {
-  font-size: 40px;
-  margin-bottom: 10px;
+.description-box {
+  background: #fff8f0;
+  padding: 15px;
+  border-radius: 12px;
 }
 
 /* ===============================
    BUTTONS
-================================ */
+================================= */
 .btn-add {
   background: linear-gradient(135deg, #ff7a18, #ffb347);
-  border: none;
-  padding: 8px 18px;
+  color: white;
   border-radius: 30px;
-  font-weight: 600;
-  color: #000;
+  padding: 8px 18px;
+  border: none;
 }
 
 .btn-edit {
-  background: linear-gradient(135deg, #ff7a18, #ffb347);
-  border: none;
-  padding: 10px 25px;
+  background: #203a43;
+  color: white;
   border-radius: 30px;
-  font-weight: 600;
-  color: #000;
+  padding: 8px 20px;
+  border: none;
 }
 
 .btn-add:hover,
@@ -134,20 +201,57 @@
 }
 
 /* ===============================
-   RESPONSIVE
-================================ */
-@media (max-width: 992px) {
-  .goshala-scroll {
-    max-height: 300px;
-  }
+   EMPTY STATE
+================================= */
+.empty-state {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
-@media (max-width: 576px) {
-  .admin-wrapper {
-    padding: 15px;
+.empty-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 992px) {
+
+  html, body {
+    overflow: auto;
   }
 
-  .panel-card {
-    padding: 15px;
+  .admin-wrapper {
+    height: auto;
+  }
+
+  .admin-container {
+    overflow: visible;
+  }
+
+  .admin-row {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .left-panel {
+    width: 100%;
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .details-body,
+  .goshala-scroll {
+    overflow: visible;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
   }
 }

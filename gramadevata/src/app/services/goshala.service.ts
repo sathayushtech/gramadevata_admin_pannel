@@ -73,4 +73,22 @@ export class GoshalaService {
     getbywelfare(_id:string):Observable<any>{
     return this.httpclient.get(URL+'welfarehomes_inactive/'+_id)
   }
+
+      getwelfarehomeCategory():Observable<any>{
+    return this.httpclient.get(URL+"welfare_homes_category")
+  }
+
+  
+      getwelfarehomebyId(_id:string):Observable<any>{
+    return this.httpclient.get(URL+'welfare_home/'+_id)
+  }
+
+    adWelfarehome(GoshalaData:any):Observable<any>{
+    return this.httpclient.post(URL+"welfare_home",GoshalaData)
+  }
+
+
+    updateWelfarehome(id: string, data: any): Observable<any> {
+  return this.httpclient.put(URL + 'welfare_home/' + id, data);
+}
 }
