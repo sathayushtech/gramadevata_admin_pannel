@@ -31,20 +31,18 @@ import { HospitalsComponent } from './hospitals/hospitals.component';
 import { VetHospitalsComponent } from './vet-hospitals/vet-hospitals.component';
 import { PoojastoresComponent } from './poojastores/poojastores.component';
 import { BloodBanksComponent } from './blood-banks/blood-banks.component';
-import { SignupComponent } from './signup/signup.component';
-import { VerifyComponent } from './verify/verify.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'temples', pathMatch: 'full'},
     {path: 'header', component: HeaderComponent},
     {path: 'temples', component: TemplesComponent},
     {path: 'events', component: EventsComponent,canActivate: [authGuard]},
     {path: 'goshalas', component: GoshalasComponent, canActivate: [authGuard],},
-    {path: 'edit_temple/:id', component: EditTempleComponent},
+    {path: 'edit_temple/:id', component: EditTempleComponent,canActivate: [authGuard]},
     {path: 'villages', component: VillagesComponent,canActivate: [authGuard]},
-    {path:'editgoshala/:id',component:EditGoshalaComponent},
-    {path: 'edit_village/:id', component: EditVillageComponent},
-    {path: 'edit_event/:id', component: EditEventComponent},
-    {path: 'addtemple', component: AddtempleComponent},
+    {path:'editgoshala/:id',component:EditGoshalaComponent,canActivate: [authGuard]},
+    {path: 'edit_village/:id', component: EditVillageComponent,canActivate: [authGuard]},
+    {path: 'edit_event/:id', component: EditEventComponent,canActivate: [authGuard]},
+    {path: 'addtemple', component: AddtempleComponent,canActivate: [authGuard]},
     {path:'addevent', component: AddeventComponent},
     {path: 'addgoshala', component: AddgoshalaComponent},
     {path: 'addvillage', component: AddvillageComponent},
@@ -65,9 +63,7 @@ export const routes: Routes = [
     {path:'hospitals',component:HospitalsComponent,canActivate: [authGuard]},
     {path:'vet-hospital',component:VetHospitalsComponent,canActivate: [authGuard]},
     {path:'pooja-stores',component:PoojastoresComponent,canActivate: [authGuard]},
-    {path:'Blood-banks',component:BloodBanksComponent,canActivate: [authGuard]},
-    // {path:'Signup',component:SignupComponent,canActivate: [authGuard]},
-    // {path:'Verify',component:VerifyComponent,canActivate: [authGuard]},
+    {path:'Blood-banks',component:BloodBanksComponent,canActivate: [authGuard]}
 
     
 

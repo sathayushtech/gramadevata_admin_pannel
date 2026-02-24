@@ -383,3 +383,26 @@ hr {
   background-color: #e74c3c;
   transform: scale(1.1);
 }
+
+/* Clean transparent-style button for sidebar */
+.btn-sidebar-login {
+  background: transparent;       /* remove heavy background */
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 0.95rem;
+  border-radius: 25px;
+  padding: 8px 0;
+  transition: all 0.3s ease;
+}
+
+.btn-sidebar-login i {
+  font-size: 1.1rem;
+}
+
+/* Hover effect */
+.btn-sidebar-login:hover {
+  background: rgba(255,255,255,0.1);  /* subtle highlight on hover */
+  border-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}

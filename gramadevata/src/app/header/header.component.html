@@ -444,15 +444,17 @@
 
 <div class="sidebar-bottom p-3">
   <!-- Not logged in -->
-  <ng-container *ngIf="!authenticationService.isLoggedIn">
-    <button class="btn w-100 btn-sidebar-login fw-bold" (click)="openSignupDialog()">
-      Sign In
-    </button>
-  </ng-container>
+<!-- Not logged in -->
+<ng-container *ngIf="!authenticationService.isLoggedIn">
+  <button class="btn w-100 btn-sidebar-login fw-bold d-flex align-items-center justify-content-center gap-2" (click)="openSignupDialog()">
+    <i class="bi bi-box-arrow-in-right"></i>
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg>  Login
+  </button>
+</ng-container>
 
   <!-- Logged in -->
   <ng-container *ngIf="authenticationService.isLoggedIn">
-    <div class="d-flex align-items-center gap-3 user-info p-2 rounded">
+    <div class="d-flex align-items-center gap-3 user-info p-2 rounded" >
       <img 
         [src]="profileImageUrl" 
         class="rounded-circle border border-light shadow-sm" 
