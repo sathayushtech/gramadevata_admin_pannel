@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TempleService } from '../services/temple.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-goshala-add-more-data',
   imports: [CommonModule],
@@ -12,7 +13,7 @@ export class GoshalaAddMoreDataComponent {
  templeData: any[] = [];
   isLoading = false;
 
-  constructor(private templeservice: TempleService) {}
+  constructor(private templeservice: TempleService,private router: Router) {}
 
   ngOnInit(): void {
     this.loadAddMoregoshalaData();
@@ -44,6 +45,9 @@ mergegoshala(templeId: string): void {
     }
   });
 }
-
+  addGoshala(){
+    this.router.navigate(['addgoshala'])
+  }
+  
 
 }

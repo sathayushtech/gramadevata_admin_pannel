@@ -1,75 +1,125 @@
-<!-- temple-add-more.component.html -->
+<div class="container py-5" style="margin-top:100px;">
 
-    <div class="container  " style="margin-top: 100px;">
-
-
-
-  <!-- No Data -->
-  <div *ngIf="templeData.length === 0" class="text-center text-muted">
-    No temple details available
+  <!-- ================= HEADER ================= -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 p-4 bg-white shadow rounded-4">
+    <div>
+      <h4 class="fw-bold mb-1">🛕 Temple Management</h4>
+      <small class="text-muted">Review and manage temple details</small>
+    </div>
+    <span class="badge bg-dark rounded-pill fs-6 px-3 py-2">
+      Total: {{ templeData.length }}
+    </span>
   </div>
 
-  <!-- Temple Rows -->
-  <div *ngFor="let temple of templeData" class="card mb-2 shadow-sm mt-5">
+  <!-- ================= EMPTY STATE ================= -->
+  <div *ngIf="templeData.length === 0" class="text-center py-5 bg-light rounded-4 shadow-sm">
+    <div class="fs-5 fw-semibold text-muted">
+      No Temple Details Available
+    </div>
+  </div>
 
+  <!-- ================= TEMPLE CARDS ================= -->
+  <div *ngFor="let temple of templeData" class="card border-0 shadow-sm rounded-4 mb-4">
     <div class="row g-0 align-items-stretch">
 
-      <!-- LEFT : Image -->
-<div class="col-md-4">
-  <div class="w-100 overflow-hidden rounded" style="height: 220px;">
-    <img
-      *ngIf="temple.image_location?.length"
-      [src]="temple.image_location[0]"
-      alt="Temple Image"
-      class="img-fluid w-100 h-100 object-fit-cover"
-    />
-  </div>
-</div>
+      <!-- LEFT IMAGE -->
+      <div class="col-md-4 position-relative">
+        <img *ngIf="temple.image_location?.length; else noImage"
+             [src]="temple.image_location[0]"
+             class="img-fluid w-100 rounded-start"
+             style="height:180px; object-fit:cover;" />
 
+        <ng-template #noImage>
+          <div class="d-flex align-items-center justify-content-center bg-light text-muted rounded-start" style="height:180px;">
+            No Image Available
+          </div>
+        </ng-template>
 
-      <!-- RIGHT : Details -->
+        <!-- STATUS BADGE -->
+        <span class="badge position-absolute top-0 end-0 m-3 px-3 py-2 fs-6"
+              [ngClass]="{'bg-success': temple.status==='ACTIVE','bg-secondary': temple.status==='INACTIVE'}">
+          {{ temple.status }}
+        </span>
+      </div>
+
+      <!-- RIGHT DETAILS -->
       <div class="col-md-8">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column justify-content-between">
 
-          <!-- Description (3 lines only) -->
-          <p class="text-muted temple-desc mb-2">
-            {{ temple.desc || 'No description available for this temple.' }}
-          </p>
-
-          <p class="mb-1"><strong>Area:</strong> {{ temple.temple_area }}</p>
-          <p class="mb-1"><strong>Timings:</strong> {{ temple.temple_timings }}</p>
-          <p class="mb-1"><strong>Construction Year:</strong> {{ temple.construction_year }}</p>
-          <p class="mb-1"><strong>Other Deity:</strong> {{ temple.other_diety }}</p>
-
-          <div class="mt-2">
-            <a *ngIf="temple.temple_website"
-               [href]="temple.temple_website"
-               target="_blank"
-               class="btn btn-sm btn-outline-primary me-2">
-              Website
-            </a>
-
-            <a *ngIf="temple.map_location"
-               [href]="temple.map_location"
-               target="_blank"
-               class="btn btn-sm btn-outline-success">
-              Map
-            </a>
+          <!-- USER INFO -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="fw-semibold fs-6">👤 {{ temple.user_full_name || 'Unknown User' }}</div>
+            <small class="text-muted">{{ temple.relative_time || '' }}</small>
           </div>
 
-          <button
-  class="btn btn-sm btn-warning"
-  (click)="mergeTemple(temple.temple_id)">
-  Merge
-</button>
+          <!-- DESCRIPTION -->
+          <p class="text-muted mb-3" style="min-height:60px;">
+            {{ temple.desc || 'No description available' }}
+          </p>
 
+          <!-- DETAILS GRID -->
+          <div class="row row-cols-1 row-cols-md-2 g-2 mb-2 small text-muted">
+            <div class="col"><strong>Area:</strong> {{ temple.temple_area || '—' }}</div>
+            <div class="col"><strong>Timings:</strong> {{ temple.temple_timings || '—' }}</div>
+            <div class="col"><strong>Construction Year:</strong> {{ temple.construction_year || '—' }}</div>
+            <div class="col"><strong>Other Deity:</strong> {{ temple.other_diety || '—' }}</div>
+          </div>
+
+          <!-- ID GRID -->
+          <div class="row row-cols-1 row-cols-md-2 g-2 mb-3 small text-muted">
+            <div class="col"><strong>Temple ID:</strong> <span class="text-break">{{ temple.temple_id }}</span></div>
+            <div class="col"><strong>User ID:</strong> <span class="text-break">{{ temple.user_id }}</span></div>
+          </div>
+
+          <hr class="my-2">
+
+          <!-- ACTION BUTTONS -->
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+
+            <!-- Website -->
+            <ng-container *ngIf="temple.temple_website; else noWebsite">
+              <a [href]="temple.temple_website" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">
+                🌐 Website
+              </a>
+            </ng-container>
+            <ng-template #noWebsite>
+              <span class="text-muted">No Website</span>
+            </ng-template>
+
+            <!-- Map -->
+            <ng-container *ngIf="temple.map_location; else noMap">
+              <a [href]="temple.map_location" target="_blank" class="btn btn-sm btn-outline-success rounded-pill">
+                📍 Map
+              </a>
+            </ng-container>
+            <ng-template #noMap>
+              <span class="text-muted">No Map</span>
+            </ng-template>
+
+            <!-- Videos -->
+            <ng-container *ngIf="temple.temple_video?.length > 0; else noVideo">
+              <a *ngFor="let video of temple.temple_video" [href]="video" target="_blank"
+                 class="btn btn-sm btn-outline-dark rounded-pill">
+                 🎥 Video
+              </a>
+            </ng-container>
+            <ng-template #noVideo>
+              <span class="text-muted">No Video</span>
+            </ng-template>
+
+            <!-- Merge Button -->
+            <button class="btn btn-sm btn-warning rounded-pill ms-auto"
+                    [disabled]="!temple.temple_id"
+                    (click)="mergeTemple(temple.temple_id)">
+              🔀 Merge
+            </button>
+
+          </div>
 
         </div>
       </div>
 
     </div>
-
   </div>
 
 </div>
-

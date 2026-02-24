@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TempleService } from '../services/temple.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-village-add-more-data',
   imports: [CommonModule],
@@ -12,7 +13,7 @@ export class VillageAddMoreDataComponent {
  templeData: any[] = [];
   isLoading = false;
 
-  constructor(private templeservice: TempleService) {}
+  constructor(private templeservice: TempleService,private router: Router) {}
 
   ngOnInit(): void {
     this.loadAddMorevillageData();
@@ -44,6 +45,12 @@ mergevillage(templeId: string): void {
     }
   });
 }
+
+
+
+  addVillage(){
+    this.router.navigate(['addvillage'])
+  }
 
 
 }
