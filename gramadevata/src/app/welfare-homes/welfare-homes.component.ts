@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { AuthenticationService } from '../services/authentication.service';
 import { GoshalaService } from '../services/goshala.service';
+import { AddWelfarehomeComponent } from '../add-welfarehome/add-welfarehome.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-welfare-homes',
   imports: [CommonModule, NzSelectModule],
@@ -31,17 +33,17 @@ export class WelfareHomesComponent {
 
   constructor(private templeservice: TempleService, private router: Router, private authenticationservice: AuthenticationService,
     private goshalaService: GoshalaService,
-    private route:ActivatedRoute,
+    private route:ActivatedRoute,private dialog: MatDialog,
   ){}
 
   ngOnInit(): void{
-    this.fetchagoshals();
+    this.fetchawelfarehome();
 
   }
 
 
   
-    fetchagoshals() {
+    fetchawelfarehome() {
       this.goshalaService.getallwelfare().subscribe(
         (data) => {
           console.log("Inactive goshala fetched:", data);
@@ -72,13 +74,7 @@ export class WelfareHomesComponent {
   
 
 
-  
 
-
-  editGoshala(id: any): void {
-    this.router.navigate(['editgoshala', id]);
-  }
-  
   
 
   handleImageError(event: Event){
@@ -87,10 +83,41 @@ export class WelfareHomesComponent {
   }
 
 
+  addwelfarehome() {
+    const dialogRef = this.dialog.open(AddWelfarehomeComponent, {
+      width: '700px',
+      maxHeight: '90vh',
+      data: {
+        mode: 'add'
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'added') {
+        this.fetchawelfarehome(); // refresh list
+      }
+    });
+  }
   
 
-  addGoshala(){
-    this.router.navigate(['addgoshala'])
-  }
+editTourism(id: string): void {
+
+  const dialogRef = this.dialog.open(AddWelfarehomeComponent, {
+    width: '600px',
+    maxHeight: '90vh',
+    data: {
+      mode: 'edit',
+      id: id
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 'updated') {
+      this.fetchawelfarehome();
+    }
+  });
+}
+
+  
 
 }

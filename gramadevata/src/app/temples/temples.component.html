@@ -1,6 +1,5 @@
-<div class="admin-wrapper">
+<!-- <div class="admin-wrapper">
 
-  <!-- HEADER -->
   <div class="admin-header d-flex align-items-center justify-content-between">
     <div>
       <h3 class="admin-title">🛕 Temple Admin</h3>
@@ -14,7 +13,6 @@
 
   <div class="admin-body row g-4">
 
-    <!-- LEFT PANEL -->
     <div class="col-12 col-lg-4">
       <div class="panel-card">
         <h6 class="panel-title">Temples</h6>
@@ -42,7 +40,6 @@
 
     
 
-    <!-- CENTER PANEL -->
     <div class="col-12 col-lg-8">
       <div class="panel-card">
 
@@ -96,5 +93,133 @@
       </div>
     </div>
 
+  </div>
+</div> -->
+
+
+
+<div class="admin-wrapper">
+
+  <!-- Top Header -->
+  <div class="admin-header">
+    <div class="logo-circle">ॐ</div>
+    <div>
+      <h2>Temples Admin</h2>
+      <p>Manage Temples, locations & temple details</p>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="admin-container">
+
+    <div class="row g-0 h-100">
+
+      <!-- LEFT PANEL -->
+      <div class="col-lg-4 col-12 left-panel">
+
+        <div class="left-header">
+          <h5 class="mb-0 fw-bold">Temples</h5>
+
+        </div>
+
+        <div class="village-scroll">
+
+          <div *ngFor="let temple of globaltemples"
+               class="village-card"
+               [ngClass]="{'active-card': selectedTemple?._id === temple._id}"
+               (click)="selectTemple(temple)">
+
+            <img [src]="temple.image_location?.[0] || 'assets/ohm.jpg'"
+                 class="village-img">
+
+            <div class="flex-grow-1">
+              <div class="village-name">{{ temple.name }}</div>
+              <div class="village-time">
+                ⏱ {{ temple.relative_time || 'Recently added' }}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="col-lg-8 col-12">
+
+        <div class="details-card">
+
+          <div class="details-header">
+            <div>
+              <h4 class="fw-bold mb-0">Temples Details</h4>
+              <small class="text-muted">View complete information</small>
+            </div>
+
+            <button (click)="addTemple()"
+                    class="btn btn-add">
+              + Add Temples
+            </button>
+          </div>
+
+          <div class="details-body">
+
+            <div *ngIf="selectedTemple; else emptyState">
+
+              <h4 class="text-center fw-bold mb-3">
+                {{ selectedTemple.name }}
+              </h4>
+
+              <img [src]="selectedTemple.image_location?.[0]"
+                   class="details-image mb-4"
+                   [alt]="selectedTemple.name"/>
+
+              <div class="details-grid">
+
+                <div><strong>Deity:</strong> {{ selectedTemple.diety }}</div>
+                <div><strong>Added By:</strong> {{ selectedTemple.user_full_name }}</div>
+                <div><strong>Contact:</strong> {{ selectedTemple.contact_phone }}</div>
+                <div><strong>Email:</strong> {{ selectedTemple.contact_email }}</div>
+                <div><strong>Year:</strong> {{ selectedTemple.construction_year }}</div>
+                <div><strong>Timings:</strong> {{ selectedTemple.temple_timings }}</div>
+                <div><strong>Address:</strong> {{ selectedTemple.address }}</div>
+                <div>
+                  <strong>Map:</strong>
+                  <a [href]="selectedTemple.temple_map_location"
+                     target="_blank"
+                     class="map-link">
+                    View Location
+                  </a>
+                </div>
+
+              </div>
+
+              <div class="description-box mt-4">
+                <strong>Description</strong>
+                <p>{{ selectedTemple.desc }}</p>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-edit"
+                        (click)="editTemple(selectedTemple._id)">
+                  Edit Temples
+                </button>
+              </div>
+
+            </div>
+
+            <ng-template #emptyState>
+              <div class="empty-state">
+                <div class="empty-icon">📍</div>
+                <h5>No Temples Selected</h5>
+                <p>Select a Temple from the left panel</p>
+              </div>
+            </ng-template>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

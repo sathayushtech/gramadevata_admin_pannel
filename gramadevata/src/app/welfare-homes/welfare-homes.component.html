@@ -1,92 +1,145 @@
-<div class="container-fluid my-4 p-3 tourism-wrapper">
+<div class="container-fluid py-4 bg-light min-vh-100">
 
-  <div class="row g-3">
+  <!-- HEADER -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-body d-flex align-items-center gap-3">
+      <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center"
+           style="width:55px;height:55px;font-size:22px;">
+        🏞️
+      </div>
+      <div>
+        <h4 class="mb-0 fw-bold">Welfare Homes Admin</h4>
+        <small class="text-muted">Manage welfare homes & details</small>
+      </div>
+    </div>
+  </div>  
+
+  <div class="row g-4">
 
     <!-- LEFT PANEL -->
-    <div class="col-md-5 col-lg-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-header bg-white fw-semibold">
-          🏞️ Welfare Homes
-        </div>
+    <div class="col-lg-4">
+      <div class="card border-0 shadow rounded-4 h-100">
 
-        <div class="card-body p-2 tourism-list">
-          <div
-            *ngFor="let temple of temples"
-            class="tourism-item"
-            [class.active]="selectedTemple === temple"
-            (click)="fetchgoshalagetbyid(temple)"
-          >
-            <img
-              [src]="temple.image_location?.[0] || 'assets/no-image.webp'"
-              alt="image"
-            />
+        <div class="card-body overflow-auto p-3" style="max-height:75vh;">
+
+          <h6 class="fw-semibold mb-3">🏠 Welfare Homes</h6>
+
+          <div *ngFor="let temple of temples"
+               class="home-item d-flex align-items-center gap-3 p-2 rounded-3 mb-2"
+               [ngClass]="{'active-home': selectedTemple === temple}"
+               (click)="fetchgoshalagetbyid(temple)">
+
+            <img [src]="temple.image_location?.[0] || 'assets/no-image.webp'"
+                 class="rounded-3"
+                 width="50"
+                 height="50"
+                 style="object-fit:cover;">
 
             <div class="flex-grow-1">
               <h6 class="mb-0">{{ temple.name }}</h6>
-              <small class="text-muted">{{ temple.relative_time }}</small>
+              <small class="text-muted">🕒 {{ temple.relative_time }}</small>
             </div>
 
-            <span class="status-badge"
-                  [class.inactive]="temple.status === 'INACTIVE'">
+            <span class="badge"
+                  [ngClass]="temple.status === 'INACTIVE' 
+                    ? 'bg-danger-subtle text-danger'
+                    : 'bg-success-subtle text-success'">
               {{ temple.status }}
             </span>
+
           </div>
+
         </div>
       </div>
     </div>
 
     <!-- RIGHT PANEL -->
-    <div class="col-md-7 col-lg-8">
-      <div class="card h-100 shadow-sm">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow rounded-4 h-100">
+  
 
-        <div class="card-body" *ngIf="selectedTemple; else emptyState">
-
-          <div class="text-center mb-3">
-            <img
-              [src]="selectedTemple.image_location?.[0]"
-              class="detail-image"
-            />
-            <h5 class="mt-2">{{ selectedTemple.name }}</h5>
-          </div>
-<div class="text-center mb-2">
-  <span class="relative-badge">
-    🕒 {{ selectedTemple.relative_time }}
-  </span>
-</div>
-
-          <div class="detail-grid">
-            <p><strong>📍 Address:</strong> {{ selectedTemple.address }}</p>
-            <p><strong>👤 Added By:</strong> {{ selectedTemple.user_full_name }}</p>
-            <p><strong>⏰ Created:</strong> {{ selectedTemple.relative_time }}</p>
-
-            <p *ngIf="selectedTemple.map_location">
-              <strong>🗺️ Map:</strong>
-              <a [href]="selectedTemple.map_location" target="_blank">
-                View on Google Maps
-              </a>
-            </p>
-
-            <p *ngIf="selectedTemple.desc">
-              <strong>📝 Description:</strong> {{ selectedTemple.desc }}
-            </p>
-          </div>
-
-          <!-- <div class="text-center mt-4">
-            <button class="btn btn-warning px-4 py-2"
-                    (click)="editGoshala(selectedTemple._id)">
-              ✏️ Edit
+        <div class="card-body p-4" >
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-semibold mb-0">Welfare Details</h5>
+            <button class="btn btn-warning rounded-pill px-4"
+                    (click)="addwelfarehome()">
+              + Add Welfare Home
             </button>
-          </div> -->
+          </div>
+          <div *ngIf="selectedTemple; else emptyState">
 
+          <!-- IMAGE -->
+          <div class="text-center mb-4">
+            <img [src]="selectedTemple.image_location?.[0]"
+                 class="detail-img mb-3">
+
+            <h4 class="fw-bold">{{ selectedTemple.name }}</h4>
+
+            <span class="badge bg-warning-subtle text-warning px-3 py-2 mt-2">
+              🕒 {{ selectedTemple.relative_time }}
+            </span>
+          </div>
+
+          <!-- DETAILS -->
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <div class="info-card">
+                <strong>📍 Address</strong>
+                <p>{{ selectedTemple.address }}</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="info-card">
+                <strong>👤 Added By</strong>
+                <p>{{ selectedTemple.user_full_name }}</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="info-card">
+                <strong>⏰ Created</strong>
+                <p>{{ selectedTemple.relative_time }}</p>
+              </div>
+            </div>
+
+            <div class="col-12" *ngIf="selectedTemple.map_location">
+              <div class="info-card">
+                <strong>🗺️ Map Location</strong><br>
+                <a [href]="selectedTemple.map_location"
+                   target="_blank"
+                   class="btn btn-outline-warning btn-sm mt-2">
+                  View on Google Maps
+                </a>
+              </div>
+            </div>
+
+            <div class="col-12" *ngIf="selectedTemple.desc">
+              <div class="info-card">
+                <strong>📝 Description</strong>
+                <p>{{ selectedTemple.desc }}</p>
+              </div>
+            </div>
+
+          </div>
+<!-- <div class="d-flex justify-content-center mt-4">
+  <button class="btn btn-outline-warning rounded-pill px-4 fw-semibold"
+         (click)="editTourism(selectedTemple._id)">
+    <i class="bi bi-pencil-square me-2"></i> Edit Details
+  </button>
+</div> -->
         </div>
 
+        <!-- EMPTY STATE -->
         <ng-template #emptyState>
-          <div class="empty-state">
-            <img src="assets/select-item.svg" width="180">
+          <div class="d-flex flex-column justify-content-center align-items-center text-muted"
+               style="height:70vh;">
+            <div style="font-size:50px;">🏠</div>
             <p class="mt-3">Select a Welfare Home to view details</p>
           </div>
         </ng-template>
-
+        </div>
       </div>
     </div>
 

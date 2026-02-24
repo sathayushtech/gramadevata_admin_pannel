@@ -1,10 +1,10 @@
 <div class="admin-wrapper">
 
   <!-- HEADER -->
-  <div class="admin-header d-flex justify-content-between align-items-center">
+  <div class="admin-header">
     <div>
-      <h3 class="admin-title">🐄 Goshala Admin</h3>
-      <small class="text-muted">Manage goshalas & details</small>
+      <h3 class="admin-title">🐄 Goshala </h3>
+      <small class="text-muted">Manage goshalas & complete details</small>
     </div>
 
     <button class="btn btn-add" (click)="addGoshala()">
@@ -12,13 +12,23 @@
     </button>
   </div>
 
-  <div class="row g-4 mt-2">
+  <!-- MAIN CONTAINER -->
+  <div class="admin-container">
 
-    <!-- LEFT PANEL -->
-    <div class="col-12 col-lg-4">
-      <div class="panel-card">
+    <div class="admin-row">
 
-        <h6 class="panel-title">Goshalas</h6>
+      <!-- LEFT PANEL -->
+      <div class="left-panel">
+
+<div class="panel-header d-flex justify-content-between align-items-center">
+  
+  <h6 class="mb-0">Goshalas</h6>
+
+  <span class="badge bg-warning text-dark rounded-pill">
+    {{ temples?.length || 0 }}
+  </span>
+
+</div>
 
         <div class="goshala-scroll">
 
@@ -30,10 +40,10 @@
             <img [src]="temple.image_location?.[0] || 'assets/ohm.jpg'"
                  class="goshala-avatar" />
 
-            <div>
+            <div class="flex-grow-1">
               <div class="goshala-name">{{ temple.name }}</div>
               <small class="text-muted">
-                {{ temple.relative_time || '—' }}
+                ⏱ {{ temple.relative_time || 'Recently added' }}
               </small>
             </div>
 
@@ -42,65 +52,75 @@
         </div>
 
       </div>
-    </div>
 
+      <!-- RIGHT PANEL -->
+      <div class="right-panel">
 
-    <!-- RIGHT PANEL -->
-    <div class="col-12 col-lg-8">
-      <div class="panel-card">
+        <div class="details-card">
 
-        <h6 class="panel-title">Goshala Details</h6>
-
-        <div *ngIf="selectedTemple; else emptyState">
-
-          <h5 class="text-center mb-3">{{ selectedTemple.name }}</h5>
-
-          <img [src]="selectedTemple.image_location?.[0]"
-               class="details-image mb-3"
-               [alt]="selectedTemple.name"/>
-
-          <div class="details-grid">
-
-            <div><strong>Added By:</strong> {{ selectedTemple.user_full_name }}</div>
-            <div><strong>Relative Time:</strong> {{ selectedTemple.relative_time }}</div>
-            <div><strong>Contact Name:</strong> {{ selectedTemple.contact_name }}</div>
-            <div><strong>Phone:</strong> {{ selectedTemple.contact_phone }}</div>
-            <div><strong>Category:</strong> {{ selectedTemple.category }}</div>
-            <div><strong>Timings:</strong> {{ selectedTemple.temple_timings }}</div>
-            <div><strong>Address:</strong> {{ selectedTemple.address }}</div>
-            <div>
-              <strong>Map:</strong>
-              <a [href]="selectedTemple.temple_map_location" target="_blank">
-                View Location
-              </a>
-            </div>
+          <div class="details-header">
+            <h5 class="fw-bold mb-0">Goshala Details</h5>
+                          <small class="text-muted">View complete information</small>
 
           </div>
 
-          <p class="mt-3">
-            <strong>Description:</strong><br>
-            {{ selectedTemple.desc }}
-          </p>
+          <div class="details-body">
 
-          <div class="text-center mt-4">
-            <button class="btn btn-edit"
-                    (click)="editGoshala(selectedTemple._id)">
-              Edit Goshala
-            </button>
+            <div *ngIf="selectedTemple; else emptyState">
+
+              <h4 class="text-center mb-3 fw-bold">
+                {{ selectedTemple.name }}
+              </h4>
+
+              <img [src]="selectedTemple.image_location?.[0]"
+                   class="details-image mb-4"
+                   [alt]="selectedTemple.name"/>
+
+              <div class="details-grid">
+
+                <div><strong>Added By:</strong> {{ selectedTemple.user_full_name }}</div>
+                <div><strong>Contact Name:</strong> {{ selectedTemple.contact_name }}</div>
+                <div><strong>Phone:</strong> {{ selectedTemple.contact_phone }}</div>
+                <div><strong>Category:</strong> {{ selectedTemple.category }}</div>
+                <div><strong>Timings:</strong> {{ selectedTemple.temple_timings }}</div>
+                <div><strong>Address:</strong> {{ selectedTemple.address }}</div>
+                <div>
+                  <strong>Map:</strong>
+                  <a [href]="selectedTemple.map_location"
+                     target="_blank">
+                    View Location
+                  </a>
+                </div>
+              </div>
+
+              <div class="description-box mt-4">
+                <strong>Description</strong>
+                <p>{{ selectedTemple.desc }}</p>
+              </div>
+
+              <div class="text-center mt-4">
+                <button class="btn btn-edit"
+                        (click)="editGoshala(selectedTemple._id)">
+                  Edit Goshala
+                </button>
+              </div>
+
+            </div>
+
+            <ng-template #emptyState>
+              <div class="empty-state">
+                <div class="empty-icon">📍</div>
+                <h5>No Goshala Selected</h5>
+                <p>Select a goshala from the left panel</p>
+              </div>
+            </ng-template>
+
           </div>
 
         </div>
 
-        <ng-template #emptyState>
-          <div class="empty-state">
-            <div>
-              <div class="empty-icon">📍</div>
-              <p>Select a Goshala to view details</p>
-            </div>
-          </div>
-        </ng-template>
-
       </div>
+
     </div>
 
   </div>
