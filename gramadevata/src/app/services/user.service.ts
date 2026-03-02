@@ -127,4 +127,7 @@ export class UserService {
     return this.httpclient.get(URL+"users/")
   }
 
+    usersadeletebyid(id:string): Observable<any>{
+    return this.httpclient.delete(URL+"profile_delete/"+id+"/")
+  }
 }

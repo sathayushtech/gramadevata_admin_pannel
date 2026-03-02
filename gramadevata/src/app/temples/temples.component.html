@@ -1,79 +1,115 @@
-<!-- <div class="admin-wrapper">
+<div class="admin-wrapper">
 
-  <div class="admin-header d-flex align-items-center justify-content-between">
+  <!-- HEADER -->
+  <div class="admin-header">
+    <div class="logo-circle">ॐ</div>
     <div>
-      <h3 class="admin-title">🛕 Temple Admin</h3>
-      <small class="text-muted">Manage temples, details & locations</small>
+      <h2>Temple Admin</h2>
+      <p>Manage temples, details & nearby locations</p>
     </div>
-
-    <button class="btn btn-add" (click)="addTemple()">
-      + Add Temple
-    </button>
   </div>
 
-  <div class="admin-body row g-4">
+  <!-- MAIN -->
+  <div class="admin-container">
+    <div class="row g-0 h-100">
 
-    <div class="col-12 col-lg-4">
-      <div class="panel-card">
-        <h6 class="panel-title">Temples</h6>
+      <!-- LEFT PANEL -->
+      <div class="col-lg-4 left-panel">
 
-        <div class="temple-list-scroll">
+        <h4>Temples</h4>
+        <hr>
+
+        <div class="temple-list">
+
           <div *ngFor="let temple of globaltemples"
                class="temple-item"
-               [ngClass]="{'active-temple': selectedTemple?._id === temple._id}"
+               [ngClass]="{'active': selectedTemple?._id === temple._id}"
                (click)="selectTemple(temple)">
 
-            <img [src]="temple.image_location[0] || 'assets/ohm.jpg'"
-                 class="temple-avatar"
-                 (error)="handleProfileImageError($event)"/>
+            <img [src]="temple.image_location?.[0] || 'assets/ohm.jpg'"
+                 class="temple-img">
 
-            <div class="temple-info">
-              <div class="temple-name">{{ temple.name }}</div>
-              <small class="text-muted">{{ temple.relative_time || '—' }}</small>
+            <div>
+              <div>{{ temple.name }}</div>
+              <small>⏱ {{ temple.relative_time || 'Recently added' }}</small>
             </div>
 
           </div>
+
         </div>
       </div>
-    </div>
 
+      <!-- RIGHT PANEL -->
+      <div class="col-lg-8 right-panel">
 
-    
+        <div class="details-header">
+          <h4>Temple Details</h4>
+          <button class="btn-add" (click)="addTemple()">+ Add Temple</button>
+        </div>
 
-    <div class="col-12 col-lg-8">
-      <div class="panel-card">
+        <hr>
 
-        <h6 class="panel-title">Temple Details</h6>
+        <!-- SCROLL AREA -->
+        <div class="details-scroll" *ngIf="selectedTemple; else emptyState">
 
-        <div *ngIf="selectedTemple; else emptyState">
+          <h3 class="text-center">{{ selectedTemple.name }}</h3>
 
-          <h5 class="text-center mb-3">{{ selectedTemple.name }}</h5>
+          <img [src]="selectedTemple.image_location?.[0]"
+               class="details-image" style="object-fit: fill;">
 
-          <img [src]="selectedTemple.image_location[0]"
-               class="details-image mb-3"
-               [alt]="selectedTemple.name"/>
+          <div class="info-card">
 
-          <div class="details-grid">
-            <div><strong>Deity:</strong> {{ selectedTemple.diety }}</div>
-            <div><strong>Added By:</strong> {{ selectedTemple.user_full_name }}</div>
-            <div><strong>Contact:</strong> {{ selectedTemple.contact_phone }}</div>
-            <div><strong>Email:</strong> {{ selectedTemple.contact_email }}</div>
-            <div><strong>Year:</strong> {{ selectedTemple.construction_year }}</div>
-            <div><strong>Timings:</strong> {{ selectedTemple.temple_timings }}</div>
-            <div><strong>Address:</strong> {{ selectedTemple.address }}</div>
-            <div>
-              <strong>Map:</strong>
-              <a [href]="selectedTemple.temple_map_location" target="_blank">View</a>
+            <div class="info-row">
+              <span class="label">Deity</span>
+              <span>{{ selectedTemple.diety }}</span>
             </div>
+
+            <div class="info-row">
+              <span class="label">Contact Name</span>
+              <span>{{ selectedTemple.user_full_name }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Phone</span>
+              <span>{{ selectedTemple.contact_phone }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Email</span>
+              <span>{{ selectedTemple.contact_email }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Address</span>
+              <span>{{ selectedTemple.address }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Construction Year</span>
+              <span>{{ selectedTemple.construction_year }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Timings</span>
+              <span>{{ selectedTemple.temple_timings }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Map</span>
+              <a [href]="selectedTemple.temple_map_location" target="_blank">
+                View Location
+              </a>
+            </div>
+
           </div>
 
-          <p class="mt-3">
-            <strong>Description:</strong><br>
-            {{ selectedTemple.desc }}
-          </p>
+          <div class="description-box">
+            <h6>Description</h6>
+            <p>{{ selectedTemple.desc }}</p>
+          </div>
 
-          <div class="text-center mt-4">
-            <button class="btn btn-edit"
+          <div class="text-center">
+            <button class="btn-edit"
                     (click)="editTemple(selectedTemple._id)">
               Edit Temple
             </button>
@@ -83,141 +119,11 @@
 
         <ng-template #emptyState>
           <div class="empty-state">
-            <div>
-              <div class="empty-icon">📍</div>
-              <p>Select a temple to view its details</p>
-            </div>
+            <h5>No Temple Selected</h5>
+            <p>Select a temple from left panel</p>
           </div>
         </ng-template>
 
-      </div>
-    </div>
-
-  </div>
-</div> -->
-
-
-
-<div class="admin-wrapper">
-
-  <!-- Top Header -->
-  <div class="admin-header">
-    <div class="logo-circle">ॐ</div>
-    <div>
-      <h2>Temples Admin</h2>
-      <p>Manage Temples, locations & temple details</p>
-    </div>
-  </div>
-
-  <!-- Main Container -->
-  <div class="admin-container">
-
-    <div class="row g-0 h-100">
-
-      <!-- LEFT PANEL -->
-      <div class="col-lg-4 col-12 left-panel">
-
-        <div class="left-header">
-          <h5 class="mb-0 fw-bold">Temples</h5>
-
-        </div>
-
-        <div class="village-scroll">
-
-          <div *ngFor="let temple of globaltemples"
-               class="village-card"
-               [ngClass]="{'active-card': selectedTemple?._id === temple._id}"
-               (click)="selectTemple(temple)">
-
-            <img [src]="temple.image_location?.[0] || 'assets/ohm.jpg'"
-                 class="village-img">
-
-            <div class="flex-grow-1">
-              <div class="village-name">{{ temple.name }}</div>
-              <div class="village-time">
-                ⏱ {{ temple.relative_time || 'Recently added' }}
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      <!-- RIGHT PANEL -->
-      <div class="col-lg-8 col-12">
-
-        <div class="details-card">
-
-          <div class="details-header">
-            <div>
-              <h4 class="fw-bold mb-0">Temples Details</h4>
-              <small class="text-muted">View complete information</small>
-            </div>
-
-            <button (click)="addTemple()"
-                    class="btn btn-add">
-              + Add Temples
-            </button>
-          </div>
-
-          <div class="details-body">
-
-            <div *ngIf="selectedTemple; else emptyState">
-
-              <h4 class="text-center fw-bold mb-3">
-                {{ selectedTemple.name }}
-              </h4>
-
-              <img [src]="selectedTemple.image_location?.[0]"
-                   class="details-image mb-4"
-                   [alt]="selectedTemple.name"/>
-
-              <div class="details-grid">
-
-                <div><strong>Deity:</strong> {{ selectedTemple.diety }}</div>
-                <div><strong>Added By:</strong> {{ selectedTemple.user_full_name }}</div>
-                <div><strong>Contact:</strong> {{ selectedTemple.contact_phone }}</div>
-                <div><strong>Email:</strong> {{ selectedTemple.contact_email }}</div>
-                <div><strong>Year:</strong> {{ selectedTemple.construction_year }}</div>
-                <div><strong>Timings:</strong> {{ selectedTemple.temple_timings }}</div>
-                <div><strong>Address:</strong> {{ selectedTemple.address }}</div>
-                <div>
-                  <strong>Map:</strong>
-                  <a [href]="selectedTemple.temple_map_location"
-                     target="_blank"
-                     class="map-link">
-                    View Location
-                  </a>
-                </div>
-
-              </div>
-
-              <div class="description-box mt-4">
-                <strong>Description</strong>
-                <p>{{ selectedTemple.desc }}</p>
-              </div>
-
-              <div class="text-center mt-4">
-                <button class="btn btn-edit"
-                        (click)="editTemple(selectedTemple._id)">
-                  Edit Temples
-                </button>
-              </div>
-
-            </div>
-
-            <ng-template #emptyState>
-              <div class="empty-state">
-                <div class="empty-icon">📍</div>
-                <h5>No Temples Selected</h5>
-                <p>Select a Temple from the left panel</p>
-              </div>
-            </ng-template>
-
-          </div>
-
-        </div>
       </div>
 
     </div>

@@ -310,6 +310,9 @@ sidebarLinks = [
   { name: 'hotels', label: 'Hotels', icon: '🏨', link: '/Hotels' },
   { name: 'restaurants', label: 'Restaurants', icon: '🍽️', link: '/Restaurants' },
   { name: 'tour-guides', label: 'Tour Guides', icon: '🧑‍💼', link: '/Tour Guides' },
+
+
+
 ];
 
 // activeLink = 'dashboard';

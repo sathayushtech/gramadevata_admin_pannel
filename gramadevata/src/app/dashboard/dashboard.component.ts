@@ -258,4 +258,18 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+    onDeleteUser(id: string, event: MouseEvent) {
+    event.stopPropagation();
+    if (!confirm('Are you sure you want to delete this user?')) return;
+    this.userService.usersadeletebyid(id).subscribe({
+      next: () => {
+        this.users = this.users.filter(u => u.id !== id);
+        if (this.selectedUser?.id === id) this.selectedUser = null;
+      },
+      error: err => {
+        console.error('Delete failed', err);
+      }
+    });
+  }
 }
