@@ -46,5 +46,13 @@ mergeTemple(templeId: string): void {
   });
 }
 
+selectedVideo: string | null = null;
 
+openVideo(video: string) {
+  this.selectedVideo = video;
+}
+
+closeVideo() {
+  this.selectedVideo = null;
+}
 }

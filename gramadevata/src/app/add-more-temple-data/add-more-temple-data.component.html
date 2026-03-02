@@ -53,9 +53,34 @@
           </div>
 
           <!-- DESCRIPTION -->
-          <p class="text-muted mb-3" style="min-height:60px;">
+          <!-- <p class="text-muted mb-3" style="min-height:60px;">
             {{ temple.desc || 'No description available' }}
-          </p>
+          </p> -->
+
+                    <h6 class="fw-bold mb-2">Description</h6>
+
+          <div *ngIf="temple.desc; else noDesc">
+
+            <!-- If Description is URL -->
+            <a *ngIf="temple.desc.startsWith('http')"
+               [href]="temple.desc"
+               target="_blank"
+               class="btn btn-sm btn-outline-primary rounded-pill">
+              🔗 Open Link
+            </a>
+
+            <!-- Normal Text -->
+            <p *ngIf="!temple.desc.startsWith('http')"
+               class="text-muted text-break"
+               style="max-height:120px; overflow:auto;">
+              {{ temple.desc }}
+            </p>
+
+          </div>
+
+          <ng-template #noDesc>
+            <p class="text-muted">No description available</p>
+          </ng-template>
 
           <!-- DETAILS GRID -->
           <div class="row row-cols-1 row-cols-md-2 g-2 mb-2 small text-muted">
@@ -97,7 +122,7 @@
             </ng-template>
 
             <!-- Videos -->
-            <ng-container *ngIf="temple.temple_video?.length > 0; else noVideo">
+            <!-- <ng-container *ngIf="temple.temple_video?.length > 0; else noVideo">
               <a *ngFor="let video of temple.temple_video" [href]="video" target="_blank"
                  class="btn btn-sm btn-outline-dark rounded-pill">
                  🎥 Video
@@ -105,7 +130,21 @@
             </ng-container>
             <ng-template #noVideo>
               <span class="text-muted">No Video</span>
-            </ng-template>
+            </ng-template> -->
+
+            <ng-container *ngIf="temple.temple_video?.length > 0; else noVideo">
+
+  <button *ngFor="let video of temple.temple_video"
+          class="btn btn-sm btn-outline-dark rounded-pill me-2"
+          (click)="openVideo(video)">
+    🎥 View Video
+  </button>
+
+</ng-container>
+
+<ng-template #noVideo>
+  <span class="text-muted">No Video</span>
+</ng-template>
 
             <!-- Merge Button -->
             <button class="btn btn-sm btn-warning rounded-pill ms-auto"
@@ -120,6 +159,23 @@
       </div>
 
     </div>
+  </div>
+
+</div>
+
+
+<!-- VIDEO POPUP -->
+<div class="video-modal" *ngIf="selectedVideo">
+
+  <div class="video-container">
+
+    <button class="close-btn" (click)="closeVideo()">✖</button>
+
+    <video width="100%" height="400" controls autoplay>
+      <source [src]="selectedVideo" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
   </div>
 
 </div>

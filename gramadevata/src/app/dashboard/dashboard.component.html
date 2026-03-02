@@ -1,12 +1,10 @@
 <div class="dashboard-wrapper">
 
-  <!-- HEADER -->
   <div class="dashboard-header">
     <h2>User Dashboard</h2>
     <p>Overview & detailed user information</p>
   </div>
 
-  <!-- STAT CARDS -->
 <div class="stats-container">
   <div class="stat-card"
        *ngFor="let card of cards"
@@ -25,65 +23,31 @@
 
 
 
-  <!-- SEARCH -->
+
   <div class="search-container">
     <input type="text"
            placeholder="Search users..."
            [formControl]="searchControl">
   </div>
 
-  <!-- MAIN CONTENT -->
+
   <div class="dashboard-content">
 
-    <!-- <div class="user-list">
 
-<div class="user-card"
-     *ngFor="let u of users"
-     (click)="viewProfile(u)"
-     [class.selected]="selectedUser?.id === u.id">
-
-  <img [src]="u.profile_pic || 'assets/profile1.webp'">
-
-  <div class="user-info">
-    <h6>{{ u.full_name || 'Unnamed User' }}</h6>
-
-    <span class="badge"
-          [ngClass]="u.is_member === 'true' ? 'member' : 'non-member'">
-      {{ u.is_member === 'true' ? 'Member' : 'Non Member' }}
-    </span>
-
-    <p class="mb-1">{{ u.email }}</p>
-
-<div class="d-flex justify-content-end align-items-center gap-5 small text-muted">
-
-  <span>{{ u.contact_number || '—' }}</span>
-
-
-  <span>{{ u.relative_time || '—' }}</span>
-
-</div>
-
-  </div>
-
-</div>
-
-    </div> -->
-<div class="user-list">
+    <div class="user-list">
 
   <div class="user-card"
        *ngFor="let u of users"
        (click)="viewProfile(u)"
        [class.selected]="selectedUser?.id === u.id">
 
-    <!-- Profile Image -->
+
     <div class="avatar">
       <img [src]="u.profile_pic || 'assets/profile1.webp'">
     </div>
 
-    <!-- User Info -->
     <div class="user-info">
 
-      <!-- Top Section -->
       <div class="top-row">
         <h6>{{ u.full_name || 'Unnamed User' }}</h6>
 
@@ -93,10 +57,8 @@
         </span>
       </div>
 
-      <!-- Email -->
       <p class="email">📧 {{ u.email || '—'}}</p>
 
-      <!-- Bottom Section -->
       <div class="bottom-row">
         <div class="contact">
           📞 {{ u.contact_number || '—' }}
@@ -107,6 +69,19 @@
            {{ u.last_seen  }}
 
         </div>
+            <!-- <button class="delete-btn"
+            (click)="onDeleteUser(u.id, $event)"
+            title="Delete user"
+            aria-label="Delete user">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="3 6 5 6 21 6"></polyline>
+        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+        <path d="M10 11v6"></path>
+        <path d="M14 11v6"></path>
+        <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
+      </svg>
+    </button> -->
       </div>
 
     </div>
@@ -118,7 +93,6 @@
 
       <div *ngIf="selectedUser; else noUser" class="modern-profile">
 
-        <!-- PROFILE HEADER -->
         <div class="profile-top text-center">
 
           <img [src]="selectedUser.profile_pic || 'assets/profile1.webp'"
@@ -132,17 +106,25 @@
                 [ngClass]="selectedUser.is_member === 'true' ? 'member' : 'non-member'">
             {{ selectedUser.is_member === 'true' ? 'Member' : 'Non-Member' }}
           </span>
-
+<!-- 
           <p class="small mt-2 opacity-75">
             {{ selectedUser.gender }} • {{ selectedUser.marital_status || '—' }}
-          </p>
+          </p> -->
+          <div class="profile-meta small mt-2">
+  <div class="info-item">
+    <span>Gender</span>
+    <strong>{{ selectedUser.gender || '—' }}</strong>
+  </div>
+  <div class="info-item">
+    <span>Marital Status</span>
+    <strong>{{ selectedUser.marital_status || '—' }}</strong>
+  </div>
+</div>
 
         </div>
 
-        <!-- PROFILE BODY -->
         <div class="profile-content">
 
-          <!-- BASIC INFO -->
           <div class="section">
             <h6>Basic Information</h6>
 
@@ -172,7 +154,6 @@
             </div>
           </div>
 
-          <!-- FAMILY -->
           <div class="section">
             <h6>Family Details</h6>
 
@@ -196,7 +177,6 @@
             </div>
           </div>
 
-          <!-- OTHER DETAILS -->
           <div class="section">
             <h6>Other Details</h6>
 
@@ -216,7 +196,6 @@
             </div>
           </div>
 
-          <!-- FAMILY IMAGES -->
           <div class="section"
                *ngIf="selectedUser.family_images?.length">
 
@@ -232,13 +211,10 @@
           </div>
 
         </div>
-        <!-- END PROFILE CONTENT -->
 
       </div>
-      <!-- END modern-profile -->
 
 
-      <!-- PLACEHOLDER -->
       <ng-template #noUser>
         <div class="empty-profile">
           👈 Select a user to view profile
@@ -246,10 +222,8 @@
       </ng-template>
 
     </div>
-    <!-- END PROFILE PANEL -->
 
   </div>
-  <!-- END MAIN CONTENT -->
 
 </div>
 
