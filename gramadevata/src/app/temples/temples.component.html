@@ -1,6 +1,5 @@
 <div class="admin-wrapper">
 
-  <!-- HEADER -->
   <div class="admin-header">
     <div class="logo-circle">ॐ</div>
     <div>
@@ -9,7 +8,6 @@
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="admin-container">
     <div class="row g-0 h-100">
 
@@ -27,7 +25,7 @@
                (click)="selectTemple(temple)">
 
             <img [src]="temple.image_location?.[0] || 'assets/ohm.jpg'"
-                 class="temple-img">
+                 class="temple-img" (error)="handleImageError($event)">
 
             <div>
               <div>{{ temple.name }}</div>
@@ -55,7 +53,7 @@
           <h3 class="text-center">{{ selectedTemple.name }}</h3>
 
           <img [src]="selectedTemple.image_location?.[0]"
-               class="details-image" style="object-fit: fill;">
+               class="details-image" style="object-fit: fill;" >
 
           <div class="info-card">
 

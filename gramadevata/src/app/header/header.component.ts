@@ -49,6 +49,14 @@ export class HeaderComponent {
       }
     }
   });
+
+
+
+    setInterval(() => {
+
+    this.currentDate = new Date();
+
+  }, 1000);
     
   }
 
@@ -329,6 +337,10 @@ closeSidebar() {
     bsOffcanvas?.hide();
   }
 }
+
+
+currentDate: Date = new Date();
+
 
 
 }

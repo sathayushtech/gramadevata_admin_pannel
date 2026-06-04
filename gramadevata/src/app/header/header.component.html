@@ -1,7 +1,7 @@
 
 
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm header-bg">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
 
     <button class="btn btn-outline-light d-lg-none me-2"
             type="button"
@@ -14,9 +14,56 @@
     <span class="navbar-brand fw-bold text-white">
       Gramadevata Admin Panel
     </span>
+  </div> -->
+  <div class="container-fluid d-flex align-items-center justify-content-between">
 
+  <!-- LEFT -->
+  <div class="d-flex align-items-center">
+
+    <button class="btn btn-outline-light d-lg-none me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasSidebar"
+            aria-controls="offcanvasSidebar">
+
+      ☰
+
+    </button>
+
+    <span class="navbar-brand fw-bold text-white mb-0">
+      Gramadevata Admin Panel
+    </span>
 
   </div>
+
+  <!-- RIGHT -->
+  <div class="d-flex align-items-center text-white">
+
+    <!-- DATE -->
+    <div class="me-4 text-end">
+
+      <div class="fw-semibold small">
+        {{ currentDate | date:'EEEE' }}
+      </div>
+
+      <div class="small opacity-75">
+        {{ currentDate | date:'dd MMM yyyy' }}
+      </div>
+
+    </div>
+
+    <!-- TIME -->
+    <div class="bg-light text-dark px-3 py-2 rounded-pill shadow-sm">
+
+      <span class="fw-bold">
+        {{ currentDate | date:'hh:mm:ss a' }}
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
 </nav>
 
 <div class="sidebar-fixed d-none d-lg-flex flex-column">

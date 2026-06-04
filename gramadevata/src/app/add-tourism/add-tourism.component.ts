@@ -278,7 +278,7 @@ submitTourism(): void {
       desc:['',Validators.required],
       timings:['',Validators.required],
       type:['',Validators.required],
-      city_id :this.route.snapshot.paramMap.get("id"),
+      // city_id :this.route.snapshot.paramMap.get("id"),
       user_id : localStorage.getItem('user'),
       status:['INACTIVE'],
       image_location:['',Validators.required],

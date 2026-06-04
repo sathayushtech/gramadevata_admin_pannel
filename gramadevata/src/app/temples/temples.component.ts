@@ -107,7 +107,7 @@ if (storedCategory) {
 
   handleImageError(event: Event){
     const imgElement = event.target as HTMLImageElement;
-    imgElement.src = 'assets/ohm.jpg';
+    imgElement.src = 'assets/profile1.webp';
   }
 
 

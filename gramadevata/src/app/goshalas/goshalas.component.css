@@ -8,10 +8,8 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ===============================
-   WRAPPER
-================================= */
-.admin-wrapper {
+
+/* .admin-wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,14 +18,29 @@ html, body {
   box-sizing: border-box;
 }
 
-/* ===============================
-   HEADER
-================================= */
 .admin-header {
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+} */
+
+.admin-wrapper {
+  height: calc(100vh - 100px); /* subtract header height */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* HEADER */
+.admin-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
   margin-bottom: 20px;
 }
 
