@@ -55,6 +55,9 @@ export class VerifyComponent {
 
   resendOtp(): void {
     // Disable button and start countdown
+      this.verifyForm.get('verification_otp')?.reset();
+  this.verifyForm.get('verification_otp')?.markAsPristine();
+  this.verifyForm.get('verification_otp')?.markAsUntouched();
     this.isDisabled = true;
     this.countdown = 30;
   

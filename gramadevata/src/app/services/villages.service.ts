@@ -33,4 +33,22 @@ export class VillagesService {
       addvillage(villagedata:any):Observable<any>{
     return this.httpclient.post(URL+"village",villagedata)
   }
+
+
+
+  vedapatshalacategeories(): Observable<any> {
+     
+    return this.httpclient.get(URL+"veda_patashala_category")
+  }
+
+      addvedapatasalasubcategeory(templeData: any): Observable<any> {
+    return this.httpclient.post(URL+"veda_patashala_sub_category", templeData);
+  }
+
+
+
+
+
+
+
 }

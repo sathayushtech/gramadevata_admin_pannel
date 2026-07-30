@@ -1,0 +1,171 @@
+<div class="container py-5">
+
+  <div class="card shadow-lg border-0 rounded-4">
+
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">
+        Add Veda Patashala Sub Category
+      </h4>
+    </div>
+
+
+    <div class="card-body p-4">
+
+
+      <form [formGroup]="subCategoryForm"
+            (ngSubmit)="submit()">
+
+
+
+        <!-- Category -->
+
+        <div class="mb-3">
+
+          <label class="form-label">
+            Select Category
+            <span class="text-danger">*</span>
+          </label>
+
+
+          <select
+            class="form-select"
+            formControlName="category">
+
+
+            <option value="">
+              Select Category
+            </option>
+
+
+            <option
+              *ngFor="let category of categoryOptions"
+              [value]="category._id">
+
+              {{category.name}}
+
+            </option>
+
+
+          </select>
+
+
+        </div>
+
+
+
+
+
+        <!-- Name -->
+
+
+        <div class="mb-3">
+
+
+          <label class="form-label">
+            Sub Category Name
+          </label>
+
+
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="Enter sub category name">
+
+
+        </div>
+
+
+
+
+
+        <!-- Description -->
+
+
+        <div class="mb-3">
+
+
+          <label class="form-label">
+            Description
+          </label>
+
+
+          <textarea
+            class="form-control"
+            rows="4"
+            formControlName="desc"
+            placeholder="Enter description">
+          </textarea>
+
+
+        </div>
+
+
+
+
+
+        <!-- Image -->
+
+
+                      <div >
+                        <div class="row mt-2" >
+                          <label>upload Image <span class="text-danger">*</span></label>
+                          <div>
+                            <nz-upload
+                              nzListType="picture-card"
+                              [(nzFileList)]="bannerFileList"
+                              [nzMultiple]="false"
+                              [nzShowButton]="bannerFileList"
+                              (nzChange)="Uploadbllodbankimage($event)"
+                              [nzAccept]="'image/*'"
+                              
+                              
+                            >
+                              <div >
+                                <i nz-icon nzType="plus"></i>
+                                Add Images
+                              </div>
+                            </nz-upload>  
+
+              
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+        <div class="text-end">
+
+
+          <button
+            type="submit"
+            class="btn btn-success px-5"
+            [disabled]="loading">
+
+
+            <span *ngIf="loading"
+                  class="spinner-border spinner-border-sm me-2">
+            </span>
+
+
+            Save
+
+
+          </button>
+
+
+        </div>
+
+
+
+      </form>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>

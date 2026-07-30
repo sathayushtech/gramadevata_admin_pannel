@@ -3,95 +3,93 @@ import { inject } from '@angular/core';
 // import { AuthenticationService } from '../services/authenticationservice/authentication.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
-import { catchError, switchMap } from 'rxjs';
+import { catchError, switchMap ,throwError} from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const authenticationService = inject(AuthenticationService);
-  const router = inject(Router);
+ const authenticationService = inject(AuthenticationService);
+  const token = authenticationService.getAccessToken();
 
-  // Write the logic for addin api-token here
-  const token = localStorage.getItem('token');
+  const normalizedUrl = req.url.toLowerCase();
+
   const excludedUrlsForGetRequests = [
-   
-    '/api/templemain',
-    '/api/goshalamain',
-    '/api/eventmain',
-    '/api/home',
-    '/api/temple',
-    '/api/templeCategory',
-    '/api/templePriority',
-    '/api/block',
-    '/api/country',
-    '/api/district',
-    '/api/state',
-    '/api/village',
-    '/api/goshala',
-    '/api/goshalaCategory',
-    '/api/event',
-    '/api/eventCategory',
-    '/api/eventCategory',
-    '/api/eventCategory'
+    'templemain',
+    'goshalamain',
+    'eventmain',
+    'home',
+    'temple',
+    'templecategory',
+    'templepriority',
+    'block',
+    'country',
+    'district',
+    'state',
+    'village',
+    'goshala',
+    'goshalaCategory',
+    'event',
+    'eventcategory',
   ];
 
   const excludedUrlsForPost = [
-    '/api/token/refresh',
-    '/api/register',
-    '/api/verify',
-    '/api/resend',
-    '/api/login',
-    '/api/forgot-password',
-    '/api/verify-forgot-password',
+    'token/refresh',
+    'register',
+    'verify',
+    'resend',
+    'login',
+    'forgot-password',
+    'verify-forgot-password',
   ];
 
-  const excludedUrls = req.method == 'GET' ? excludedUrlsForGetRequests : excludedUrlsForPost;
+  const excludedUrls = req.method === 'GET' ? excludedUrlsForGetRequests : excludedUrlsForPost;
 
-  if (excludedUrls.some(url => req.url.includes(url))) {
+  if (excludedUrls.some((url) => normalizedUrl.includes(url))) {
     return next(req);
   }
 
-  if (token) {
-    try {
-      let decodeToken = jwtDecode(token);
-      const isExpired =
-        decodeToken && decodeToken.exp
-          ? decodeToken.exp < Date.now() / 1000
-          : false;
-      if (isExpired) {
-        let refreshToken = localStorage.getItem('refresh');
-        if (refreshToken) {
-          return authenticationService.refreshToken(refreshToken).pipe(
-            switchMap((res) => {
-              // localStorage.setItem('token', res['access']);
-              req = req.clone({
-                setHeaders: {
-                  Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-              });
-              return next(req);
-            }),
-            catchError(err => {
-              authenticationService.logout()
-              throw err;
-            })
-          );
-        } else {
-          authenticationService.logout();
-        }
-      } 
-      else {
-        req = req.clone({
+  if (!token) {
+    return next(req);
+  }
+
+  try {
+    const decodedToken: any = jwtDecode(token);
+    const expiration = decodedToken?.exp;
+    const isExpired = typeof expiration === 'number' ? expiration < Date.now() / 1000 : false;
+
+    if (!isExpired) {
+      const authReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return next(authReq);
+    }
+
+    const refreshToken = authenticationService.getRefreshToken();
+    if (!refreshToken) {
+      authenticationService.logout();
+      return next(req);
+    }
+
+    return authenticationService.refreshToken(refreshToken).pipe(
+      switchMap((res: any) => {
+        authenticationService.persistAuthTokens(res);
+        const refreshedToken = authenticationService.getAccessToken();
+        const authReq = req.clone({
           setHeaders: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${refreshedToken ?? token}`,
           },
         });
-
-        return next(req);
-      }
-    } catch (e) {
-      authenticationService.logout()
-    }
+        return next(authReq);
+      }),
+      catchError((err) => {
+        authenticationService.logout();
+        return throwError(() => err);
+      })
+    );
+  } catch (e) {
+    authenticationService.logout();
+    return next(req);
   }
-  return next(req);
 };

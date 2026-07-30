@@ -30,17 +30,17 @@ export class AuthenticationService {
     return this.isLoggedIn;
   }
 
-  logout() {
-    localStorage.clear();
-    this.isLoggedIn = false;
-    this.userservice.isMemberIn = false;
+  // logout() {
+  //   localStorage.clear();
+  //   this.isLoggedIn = false;
+  //   this.userservice.isMemberIn = false;
     
-    this.router.navigate(['temples'])
-    localStorage.removeItem('profile_pic');
+  //   this.router.navigate(['temples'])
+  //   localStorage.removeItem('profile_pic');
 
      
     
-  }
+  // }
 
   showLoginModal(): void {
     this.openSignupDialog();
@@ -70,5 +70,78 @@ export class AuthenticationService {
   }
 
 
+
+    setLoggedInState(isLoggedIn: boolean): void {
+    this.isLoggedIn = isLoggedIn;
+  }
+
+  getAccessToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refresh');
+  }
+
+  persistAuthTokens(response: any): void {
+    const accessToken = response?.access ?? response?.access_token ?? response?.token ?? null;
+    const refreshToken = response?.refresh ?? response?.refresh_token ?? null;
+
+    if (accessToken) {
+      localStorage.setItem('token', accessToken);
+    }
+
+    if (refreshToken) {
+      localStorage.setItem('refresh', refreshToken);
+    }
+
+    if (response?.user_id) {
+      localStorage.setItem('user', response.user_id);
+    }
+
+    if (response?.username) {
+      localStorage.setItem('username', response.username);
+    }
+
+    if (response?.is_member !== undefined && response?.is_member !== null) {
+      localStorage.setItem('is_member', response.is_member);
+    }
+
+    if (response?.type) {
+      localStorage.setItem('type', response.type);
+    }
+
+    if (response?.profile_pic) {
+      localStorage.setItem('profile_pic', response.profile_pic);
+    }
+
+    if (response?.full_name) {
+      localStorage.setItem('full_name', response.full_name);
+    }
+
+    this.isLoggedIn = true;
+  }
+
+  logout(redirectToHome = true) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh');
+    localStorage.removeItem('user');
+    localStorage.removeItem('username');
+    localStorage.removeItem('is_member');
+    localStorage.removeItem('type');
+    localStorage.removeItem('profile_pic');
+    localStorage.removeItem('full_name');
+    localStorage.removeItem('user_id');
+
+    this.isLoggedIn = false;
+    this.userservice.isMemberIn = false;
+    this.userservice.isPujariIn = false;
+    // this.userservice.isvolunary = false;
+    // this.spinner?.hide();
+
+    if (redirectToHome) {
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    }
+  }
   
 }
